@@ -1,0 +1,26 @@
+header{
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+}
+.lines{
+  display: grid;
+  grid-auto-columns: auto 1fr auto;
+
+}
+.lines>:first-child,.lines>:nth-child(4){
+  grid-column: 1;
+}
+.lines>:nth-child(2),.lines>:nth-child(5){
+  grid-column: 2;
+}
+.lines>:nth-child(3),.lines>:nth-child(6){
+  grid-column: 3;
+}
+.progress{
+  //width: 100%;
+}
+.topics{
+  display: flex;
+  flex-direction: column;
+}

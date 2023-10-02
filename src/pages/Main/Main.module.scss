@@ -1,0 +1,16 @@
+.content{
+
+}
+.header{
+
+}
+.cards{
+  display: grid;
+  grid-auto-flow: dense;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+  flex-wrap: wrap;
+}
+:global(.chem),:global(.bio),:global(.py){
+  grid-column: 1;
+}
