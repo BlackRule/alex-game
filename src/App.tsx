@@ -1,5 +1,6 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-const pages = import.meta.glob("./pages/**/*.tsx", { eager: true })
+import {createBrowserRouter, RouterProvider} from "react-router-dom";
+
+const pages = import.meta.glob("./pages/**/*.tsx", {eager: true})
 //В продолжение кнопка "Полезно знать" будет осуществлять переход на другую страницу сайта, где используем картинку выше
 const routes = [];
 for (const path of Object.keys(pages)) {
@@ -11,8 +12,7 @@ for (const path of Object.keys(pages)) {
   const normalizedPathName = fileName.includes("$")
       ? fileName.replace("$", ":")
       : fileName.replace(/\/index/, "");
-
-    routes.push({
+  routes.push({
     path: fileName === "index" ? "/" : `/${normalizedPathName.toLowerCase()}`,
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
@@ -29,16 +29,17 @@ for (const path of Object.keys(pages)) {
   });
 }
 const router = createBrowserRouter(
-    routes.map(({ Element, ErrorBoundary, ...rest }) => ({
+    routes.map(({Element, ErrorBoundary, ...rest}) => ({
       ...rest,
-      element: <Element />,
-      ...(ErrorBoundary && { errorElement: <ErrorBoundary /> }),
+      element: <Element/>,
+      ...(ErrorBoundary && {errorElement: <ErrorBoundary/>}),
     }))
 );
+
 function App() {
 
   return (
-      <RouterProvider router={router} />
+      <RouterProvider router={router}/>
   )
 
 }

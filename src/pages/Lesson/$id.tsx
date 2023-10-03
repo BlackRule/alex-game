@@ -1,7 +1,8 @@
 import {Link, useParams} from "react-router-dom";
 import styles from './style.module.scss'
 import {Progress} from "./components/Progress/Progress.tsx";
-import {T1, topicsForSubject} from "src/data.ts";
+import {topicsForSubject} from "src/data/data.ts";
+import {T1} from "src/data/types.ts";
 
 
 
@@ -25,7 +26,7 @@ const Lesson = () => {
 
         <div className={styles.topics}>
             {topics.map((t, i) =>
-                    <><Link to={`/T1/${id}_${i}_0_0`}>{t.name}</Link></>
+                    <><Link to={`/T2/${id}_${i}_0_0`}>{t.name}</Link></>
 
             )}
         </div>
