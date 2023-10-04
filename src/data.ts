@@ -1,4 +1,10 @@
 import __html1 from 'src/html/1.html?raw'
+import __html2 from 'src/html/2.html?raw'
+import __html3 from 'src/html/3.html?raw'
+import __html4 from 'src/html/4.html?raw'
+import __html5 from 'src/html/5.html?raw'
+import __html6 from 'src/html/6.html?raw'
+import __html7 from 'src/html/6.html?raw'
 
 export type SingleQ = { type: "single-q", correct: string };
 export type MultiQ = { type: "multi-q", questions: { text: string, correct: string }[] };
@@ -29,7 +35,7 @@ export const topicsForSubject: TopicsForSubject = {
                     {
                         type: 'video',
                         url: 'https://storage0.sirius.online/video/courses/hHsN2BOBqGc.mp4',
-                        text: __html1
+                        text: __html2
                     },
                 ]
             },
@@ -39,7 +45,7 @@ export const topicsForSubject: TopicsForSubject = {
                     {
                         type: 'video',
                         url: 'https://storage0.sirius.online/video/courses/EHJld1ZCuGE.mp4',
-                        text: __html1
+                        text: __html3
                     },
                 ]
             },
@@ -49,7 +55,7 @@ export const topicsForSubject: TopicsForSubject = {
                     {
                         type: 'video',
                         url: 'https://storage0.sirius.online/video/courses/_Cy0JTw1aL8.mp4',
-                        text: __html1
+                        text: __html4
                     },
                 ]
             },
@@ -59,7 +65,7 @@ export const topicsForSubject: TopicsForSubject = {
                     {
                         type: 'video',
                         url: 'https://storage0.sirius.online/video/courses/QOLQVA2275k.mp4',
-                        text: __html1
+                        text: __html5
                     },
                 ]
             },
@@ -69,12 +75,23 @@ export const topicsForSubject: TopicsForSubject = {
                     {
                         type: 'video',
                         url: 'https://storage0.sirius.online/video/courses/p_kRfVTeMzk.mp4',
-                        text: __html1
+                        text: __html6
                     },
                 ]
             }]
     },
-        {name: "Уравнения химических реакций", t2s: []},
+        {name: "Уравнения химических реакций", t2s: [
+                {
+                    name: 'Запись уравнений химических реакций',
+                    t3s: [
+                        {
+                            type: 'video',
+                            url: 'https://storage0.sirius.online/video/courses/5bDHYDafHB0.mp4',
+                            text: __html7
+                        },
+                    ]
+                }
+            ]},
         {name: "Смеси веществ", t2s: []},
         {name: "Строение и свойства газов", t2s: []},
         {name: "Ядро атома и радиоактивные превращения", t2s: []},
