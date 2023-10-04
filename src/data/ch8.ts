@@ -81,6 +81,11 @@ export const ch8:T1[]=[{
                     }
                 ]
             },
+            {type: 'problem', video_url:'https://storage0.sirius.online/video/courses/TZq1yjRJgL0.mp4',
+             title: "Задача 1.",
+                text:'<p class="marked-paragraph">Хром с&nbsp;кислородом образует различные соединения, в&nbsp;которых металл имеет валентность II, III или VI. Запишите формулы этих соединений и&nbsp;определите, не&nbsp;проводя вычислений, в&nbsp;каком из&nbsp;соединений массовая доля кислорода будет максимальной.</p>'
+            }
+
         ]
     },
         {

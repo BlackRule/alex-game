@@ -5,7 +5,7 @@ export type MultiCh = { type: "multi-ch", options: string[], correctIds: number[
 export type Test = { text: string } & (SingleQ | MultiQ | SingleCh | MultiCh)
 export type T3 = { type: "video", url: string, text: string } |
     { type: "testsGroup", tests: Test[] } |
-    { type: "problem" };
+    { type: "problem",title:string, text:string,video_url: string  }
 export type T2 = { name: string, t3s: T3[] }
 export type T1 = { name: string, t2s: T2[] }
 export type TopicsForSubject = { [id: string]: T1[] }

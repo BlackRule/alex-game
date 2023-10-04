@@ -1,10 +1,9 @@
-import {Link, useParams} from "react-router-dom";
-import ico1 from './img/ico1.png'
-import ico2 from './img/ico2.png'
-import ico3 from './img/ico3.png'
+import {useParams} from "react-router-dom";
 import {topicsForSubject} from "src/data/data.ts";
-import {T1, Test} from "src/data/types.ts";
+import {Test} from "src/data/types.ts";
 import {ChangeEvent, useCallback, useRef, useState} from "react";
+import {Header} from "src/pages/T2/components/Header/Header.tsx";
+import {SingleChTest} from "src/pages/T2/components/SingleChTest/SingleChTest.tsx";
 
 
 function SingleQTest(props: { test: Extract<Test, { type: "single-q" }> }) {
@@ -23,34 +22,7 @@ function SingleQTest(props: { test: Extract<Test, { type: "single-q" }> }) {
     </div>;
 }
 
-function SingleChTest(props: { test: Extract<Test, { type: "single-ch" }> }) {
-    const [isCorrect, setCorrect] = useState(false)
-    const [selectedValue, setSelectedValue] = useState(0)
-    const change = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-        setSelectedValue(Number(e.target.value))
-    }, [])
-    const answer = useCallback(() => {
-        if (selectedValue == props.test.correctId) setCorrect(true)
-        else setCorrect(false)
-    }, [props.test.correctId, selectedValue])
-    const options = []
-    for (let i = 0; i < props.test.options.length; i++) {
-        const o = props.test.options[i]
-        options.push(<div key={i}>
-            <label style={{display: "flex"}}>
-                <input type="radio" value={i} name="option" onChange={change}/>
-                <div dangerouslySetInnerHTML={{__html: o}}/>
-            </label>
 
-        </div>)
-    }
-    return <div style={{display: 'flex', flexDirection: 'column'}}>
-        <div dangerouslySetInnerHTML={{__html: props.test.text}}/>
-        <div>{isCorrect ? 'Верно' : 'Неверно'}</div>
-        <div>{options}</div>
-        <button onClick={answer}>Ответить</button>
-    </div>;
-}
 
 function MultiQTest(props: { test: Extract<Test, { type: "multi-q" }> }) {
     const [isCorrect, setCorrect] = useState(false)
@@ -132,37 +104,26 @@ function MultiChTest(props: { test: Extract<Test, { type: "multi-ch" }> }) {
     </div>;
 }
 
+
+
 const T2Page = () => {
     const id = useParams()["id"] ?? "";
     //fixme are strings technically
     const [tId, t1Id, t2id, t3id] = id.split('_') as [string, number, number, number]
-    const ts: T1[] = Object.keys(topicsForSubject).includes(tId) ?
-        topicsForSubject[tId] : []
-    const links = []
-    for (let i1 = 0; i1 < ts[t1Id].t2s.length; i1++) {
-        const t2 = ts[t1Id].t2s[i1];
-        for (let i2 = 0; i2 < t2.t3s.length; i2++) {
-            const t3 = t2.t3s[i2];
-            let i;
-            switch (t3.type) {
-                case "video":
-                    i = ico1
-                    break
-                case "testsGroup":
-                    i = ico2
-                    break
-                case "problem":
-                    i = ico3
-                    break
-            }
-            links.push(<Link to={`/T2/${tId}_${t1Id}_${i1}_${i2}`} key={`${tId}_${t1Id}_${i1}_${i2}`}><img src={i}
-                                                                                                           alt=""/></Link>)
-        }
-    }
+
+
     let element
     const e = topicsForSubject[tId][t1Id].t2s[t2id].t3s[t3id]
     switch (e.type) {
         case "problem":
+            element=<>
+                <SingleChTest test={{type:'single-ch',text:e.text,correctId:-1,options:[
+                    'Решил верно, посмотрел видеоразбор',
+                        'Решил верно, не смотрел видеоразбор (уверен в решении)',
+                        'Решил неверно, посмотрел видеоразбор',
+                        'Не решал, но посмотрел видеоразбор'
+                    ]}}/>
+            </>
             break;
         case "video":
             element = <div>
@@ -171,10 +132,10 @@ const T2Page = () => {
                 <div dangerouslySetInnerHTML={{__html: e.text}}/>
             </div>
             break
-        case "testsGroup":
+        case "testsGroup": {
             const tests = []
             for (let i = 0; i < e.tests.length; i++) {
-                const test = e.tests[i]; //for TS
+                const test = e.tests[i]
                 switch (test.type) {
                     case "single-q":
                         tests.push(<SingleQTest test={test} key={i}/>)
@@ -195,12 +156,10 @@ const T2Page = () => {
                 {tests}
             </div>
             break
+        }
     }
     return <>
-        <Link to={`/Lesson/${tId}`}>Назад</Link>
-        <div>
-            {links}
-        </div>
+        <Header tId={tId} t1Id={t1Id}/>
         <div>
             {element}
         </div>
