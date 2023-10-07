@@ -5,7 +5,6 @@ import {ChangeEvent, useCallback, useRef, useState} from "react";
 import {Header} from "src/pages/T2/components/Header/Header.tsx";
 import {SingleChTest} from "src/pages/T2/components/SingleChTest/SingleChTest.tsx";
 
-
 function SingleQTest(props: { test: Extract<Test, { type: "single-q" }> }) {
     const [isCorrect, setCorrect] = useState(false)
     const inputRef = useRef<HTMLInputElement>(null)
@@ -21,8 +20,6 @@ function SingleQTest(props: { test: Extract<Test, { type: "single-q" }> }) {
         <button onClick={answer}>Ответить</button>
     </div>;
 }
-
-
 
 function MultiQTest(props: { test: Extract<Test, { type: "multi-q" }> }) {
     const [isCorrect, setCorrect] = useState(false)
@@ -104,7 +101,43 @@ function MultiChTest(props: { test: Extract<Test, { type: "multi-ch" }> }) {
     </div>;
 }
 
-
+/*function TextTest(props: { test: Extract<Test, { type: 'text' }> }) {
+    const [isCorrect, setCorrect] = useState(false)
+    // todo
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    const inputRefs = []
+    const questions = []
+    /!*for (let i = 0; i < props.test.questions.length; i++) {
+        // todo
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        inputRefs.push(useRef<HTMLInputElement>(null))
+        questions.push(<div key={i}>
+            {props.test.questions[i].text}
+            <input type="text" ref={inputRefs[i]}/>
+        </div>)
+    }*!/
+    const answer = useCallback(() => {
+        let c = true
+        for (let i = 0; i < inputRefs.length; i++) {
+            // todo
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
+            const inputRef = inputRefs[i]
+            if (inputRef.current === null) return
+            if (inputRef.current.value != props.test.questions[i].correct) c = false
+        }
+        if (c) setCorrect(true)
+        else setCorrect(false)
+    }, [props.test])
+    return <div style={{display: 'flex', flexDirection: 'column'}}>
+        <div dangerouslySetInnerHTML={{__html: props.test.text}}/>
+        <div>{isCorrect ? 'Верно' : 'Неверно'}</div>
+        {questions}
+        <button onClick={answer}>Ответить</button>
+    </div>;
+}*/
 
 const T2Page = () => {
     const id = useParams()["id"] ?? "";
@@ -122,7 +155,7 @@ const T2Page = () => {
                         'Решил верно, не смотрел видеоразбор (уверен в решении)',
                         'Решил неверно, посмотрел видеоразбор',
                         'Не решал, но посмотрел видеоразбор'
-                    ]}}/>
+                    ]}} video={e.video_url} />
             </>
             break;
         case "video":
@@ -149,7 +182,9 @@ const T2Page = () => {
                     case "multi-ch":
                         tests.push(<MultiChTest test={test} key={i}/>)
                         break;
-
+                    case "text":
+                        // tests.push(<TextTest test={test} key={i}/>)
+                        break;
                 }
             }
             element = <div>
