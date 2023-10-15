@@ -9,4 +9,6 @@ export type T3 = { type: "video", url: string, text: string } |
     { type: "problem",title:string, text:string,video_url: string  }
 export type T2 = { name: string, t3s: T3[] }
 export type T1 = { name: string, t2s: T2[] }
-export type TopicsForSubject = { [id: string]: T1[] }
+export type Type = "chem" | "bio" | "phy" | "infm";
+
+export type TopicsForSubject = { [id: string]: { t1s:T1[],type: Type} }

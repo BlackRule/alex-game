@@ -4,12 +4,12 @@ import ico1 from "src/pages/T2/img/ico1.png";
 import ico2 from "src/pages/T2/img/ico2.png";
 import ico3 from "src/pages/T2/img/ico3.png";
 import {T1} from "src/data/types.ts";
-import {topicsForSubject} from "src/data/data.ts";
+import {colors, topicsForSubject} from "src/data/data.ts";
 
 export function Header(props: { tId: string,t1Id:number } ) {
     const t1Id=props.t1Id
     const ts: T1[] = Object.keys(topicsForSubject).includes(props.tId) ?
-        topicsForSubject[props.tId] : []
+        topicsForSubject[props.tId].t1s : []
     const links = []
     for (let i1 = 0; i1 < ts[t1Id].t2s.length; i1++) {
         const t2 = ts[t1Id].t2s[i1];
@@ -28,13 +28,12 @@ export function Header(props: { tId: string,t1Id:number } ) {
                     break
             }
             links.push(
-    <Link to={`/T2/${props.tId}_${t1Id}_${i1}_${i2}`} key={`${i1}_${i2}`} className={styles.link}>
-        <img  className={styles["link-ico"]} src={i} alt=""/>
-    </Link>)
+    <Link to={`/T2/${props.tId}_${t1Id}_${i1}_${i2}`} key={`${i1}_${i2}`} className={styles["link-ico"]} style={{backgroundImage:`url(${i})`}}/>)
         }
     }
     return <><Link to={`/Lesson/${props.tId}`}>Назад</Link>
-        <div className={styles.Header}>
+        <div className={styles.Header}
+             style={{backgroundColor:colors[topicsForSubject[props.tId].type]}}>
             {links}
         </div>
     </>;

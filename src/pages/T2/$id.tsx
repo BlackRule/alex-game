@@ -144,9 +144,8 @@ const T2Page = () => {
     //fixme are strings technically
     const [tId, t1Id, t2id, t3id] = id.split('_') as [string, number, number, number]
 
-
     let element
-    const e = topicsForSubject[tId][t1Id].t2s[t2id].t3s[t3id]
+    const e = topicsForSubject[tId].t1s[t1Id].t2s[t2id].t3s[t3id]
     switch (e.type) {
         case "problem":
             element=<>
@@ -160,7 +159,7 @@ const T2Page = () => {
             break;
         case "video":
             element = <div>
-                <h1>{topicsForSubject[tId][t1Id].t2s[t2id].name}</h1>
+                <h1>{topicsForSubject[tId].t1s[t1Id].t2s[t2id].name}</h1>
                 <video src={e.url} controls></video>
                 <div dangerouslySetInnerHTML={{__html: e.text}}/>
             </div>

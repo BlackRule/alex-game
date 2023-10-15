@@ -20,39 +20,24 @@ import i16 from './img/16.png'
 // import py_alg from './img/py_alg.jpg'
 // import bio1 from './img/bio1.jpg'
 // import bio2 from './img/bio2.jpg'
-import logo from './img/logo.png'
 
 import style from './Main.module.scss'
 import Card from "src/components/Card/Card.tsx";
+import {Header} from "src/components/Header/Header.tsx";
+
 function Main() {
   return (
         <div className={style.content}>
-            <div className={style.logo}><img src={logo} alt="logo"/><span>Alex-Bort</span> <span>School</span></div>
-            <div className={style.header}>
-                <h1>Alex's Bortulev science games</h1>
-                <div className={style.b1}>отзывы</div>
-                <div className={style.b2}>
-                    <span className="material-symbols-outlined">pending_actions</span>
-                анкеты
-                </div>
-            </div>
+            <Header/>
             <div className={style.cards}>
-            <Card progress={0} text={"Химия 8 класс"} tags={["Полезно знать"]} image={i6} bgColor={"#4812B2"} className={"chem"} lessonId={"ch8"}/>
-                <Card progress={10} text={"Химия 9 класс"} tags={["Полезно знать"]} image={i1} bgColor={"#4812B2"} className={"chem"} lessonId={"ch9"}/>
-                <Card progress={10} text={"Химия 10 класс"} tags={["Полезно знать"]} image={i8} bgColor={"#4812B2"} className={"chem"}  lessonId={"ch3"}/>
-                <Card progress={10} text={"Химия 11 класс"} tags={["Полезно знать"]} image={i9} bgColor={"#4812B2"} className={"chem"}  lessonId={"ch4"}/>
-                <Card progress={0} text={"Биология 7 класс"} tags={["Полезно знать","Словарь терминов"]} image={i10} bgColor={"#75b000"} className={"bio"} lessonId={"ch1"}/>
-                <Card progress={0} text={"Биология 8 класс"} tags={["Полезно знать","Словарь терминов"]} image={i11} bgColor={"#75b000"} className={"bio"} lessonId={"ch1"}/>
-                <Card progress={0} text={"Физика 7 класс"} tags={["Полезно знать"]} image={i5} bgColor={"#A81E69"} lessonId={"ch1"}/>
-                <Card progress={0} text={"Физика 8 класс"} tags={["Полезно знать"]} image={i4} bgColor={"#A81E69"} lessonId={"ph8"}/>
-                <Card progress={0} text={"Физика 9 класс"} tags={["Полезно знать"]} image={i7} bgColor={"#A81E69"} lessonId={"ch1"}/>
-                <Card progress={0} text={"Физика 9 класс"} tags={["Полезно знать"]} image={i13} bgColor={"#A81E69"} lessonId={"ch1"}/>
-                <Card progress={0} text={"Физика 10 класс"} tags={["Полезно знать"]} image={i2} bgColor={"#A81E69"} lessonId={"ch1"}/>
-                <Card progress={0} text={"Физика 10 класс"} tags={["Полезно знать"]} image={i3} bgColor={"#A81E69"} lessonId={"ch1"}/>
-                <Card progress={0} text={"Python"} tags={["Полезно знать"]} image={i12} bgColor={"#007a4f"} className={"py"} lessonId={"ch1"}/>
-                <Card progress={0} text={"Python алгоритмы"} tags={["Полезно знать"]} image={i16} bgColor={"#007a4f"} className={"py"} lessonId={"ch1"}/>
-                <Card progress={0} text={"C++ Алгоритмы"} tags={["Полезно знать"]} image={i14} bgColor={"#007a4f"} lessonId={"ch1"}/>
-                <Card progress={0} text={"C++ Алгоритмы"} tags={["Полезно знать"]} image={i15} bgColor={"#007a4f"} lessonId={"ch1"}/>
+                <Card progress={10} text={"Химия 9 класс"} tags={["Полезно знать"]} image={i1} bgColor={"#4812B2"}
+                      className={"chem"} lessonId={"ch8"}/>
+                <Card progress={0} text={"Биология 9 класс"} tags={["Полезно знать", "Словарь терминов"]} image={i11}
+                      bgColor={"#75b000"} className={"bio"} lessonId={"ch1"}/>
+                <Card progress={0} text={"Физика 9 класс"} tags={["Полезно знать"]} image={i13} bgColor={"#A81E69"}
+                      lessonId={"ch1"}/>
+                <Card progress={0} text={"Информатика и прикладная математика"} tags={["Полезно знать"]} image={i12}
+                      bgColor={"#007a4f"} className={"py"} lessonId={"ch1"}/>
 
             </div>
         </div>

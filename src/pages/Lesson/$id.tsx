@@ -9,7 +9,7 @@ import {T1} from "src/data/types.ts";
 const Lesson = () => {
     const id = useParams()["id"] ?? "";
     const topics: T1[] = Object.keys(topicsForSubject).includes(id) ?
-        topicsForSubject[id] : []
+        topicsForSubject[id].t1s : []
     return <>
         <header>
             <div className={styles.name}>Химия 8 класс</div>
@@ -27,7 +27,6 @@ const Lesson = () => {
         <div className={styles.topics}>
             {topics.map((t, i) =>
                     <><Link to={`/T2/${id}_${i}_0_0`}>{t.name}</Link></>
-
             )}
         </div>
     </>;

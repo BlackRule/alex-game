@@ -1,0 +1,40 @@
+.t1, .t2 {
+    background-position: center;
+    background-size: cover;
+    cursor: pointer;
+    border: 1px black solid;
+    overflow: hidden;
+    display: flex;
+    height: 200px;
+    position: relative;
+    &:hover .hover{
+        display: flex;
+    }
+}
+
+.t1 {
+    width: 200px;
+    border-radius: 50%;
+}
+
+.t2 {
+    width: 400px;
+    border-radius: 200px;
+}
+
+.hover{
+    display: none;
+    box-sizing: content-box;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.39);
+    background-image: url("./Video_triangle.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100px;
+    padding: 0px;
+    background-origin: content-box;
+}
