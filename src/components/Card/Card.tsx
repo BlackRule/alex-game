@@ -1,9 +1,6 @@
 import style from './Card.module.scss'
 import {Link} from "react-router-dom";
 import {Progress} from "src/components/Progress/Progress.tsx";
-
-
-
 function Card(props: { image: string, bgColor: string, progress: number, text: string, tags: string[], className?:string, image2?: string, lessonId: string }) {
     return <div className={style.Card + ' ' + props.className} style={{backgroundColor: props.bgColor}}>
         <div className={style.bg} style={{backgroundImage: `url(${props.image}),url(${props.image2})`}}></div>
