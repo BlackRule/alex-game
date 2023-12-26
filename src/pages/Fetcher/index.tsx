@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {T1, T2} from "src/data/types.ts";
 
-function getCourse2(id,course_id) {
+function getCourse2(id, course_id) {
     return get(`https://edu.sirius.online/noo-back/v74.11/course/${course_id}/learn/${id}`, fetch(`https://edu.sirius.online/noo-back/v74.11/course/${course_id}/learn/${id}`, {
         "headers": {
             "accept": "application/json",
@@ -47,7 +47,7 @@ function getCourse(id) {
     }));
 }
 
-async function get(url:string,fetch):Promise<any>{
+async function get(url:string,fetch: Promise<Response>):Promise<any>{
     const item=localStorage.getItem(url)
     if(item===null) {
         const r = await fetch
@@ -85,9 +85,13 @@ async function getSubj(hash:string,id:string){
     if(r.courseInfo.name==='Дополнительные главы химии. 8 класс. v1.8') getCh8(r.courseInfo,id)
 }
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 async function extracted(res2, j: number):Promise<T2> {
     const element = res2.elements[j]
     const re2 = (await getResource(element.hash)).element
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     if( re2.hasOwnProperty('video')){
         return {name:re2.video.title,t3s:[{
             type:'video',

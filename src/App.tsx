@@ -1,7 +1,7 @@
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
+import type {} from '@redux-devtools/extension' // required for devtools typing
 
 const pages = import.meta.glob("./pages/**/*.tsx", {eager: true})
-//В продолжение кнопка "Полезно знать" будет осуществлять переход на другую страницу сайта, где используем картинку выше
 const routes = [];
 for (const path of Object.keys(pages)) {
   const fileName = path.match(/\.\/pages\/(.*)\.tsx$/)?.[1];
@@ -12,6 +12,8 @@ for (const path of Object.keys(pages)) {
   const normalizedPathName = fileName.includes("$")
       ? fileName.replace("$", ":")
       : fileName.replace(/\/index/, "");
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
   routes.push({
     path: fileName === "index" ? "/" : `/${normalizedPathName.toLowerCase()}`,
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -29,9 +31,15 @@ for (const path of Object.keys(pages)) {
   });
 }
 const router = createBrowserRouter(
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     routes.map(({Element, ErrorBoundary, ...rest}) => ({
       ...rest,
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
       element: <Element/>,
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
       ...(ErrorBoundary && {errorElement: <ErrorBoundary/>}),
     }))
 );
