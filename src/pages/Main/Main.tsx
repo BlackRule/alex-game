@@ -37,7 +37,7 @@ function Main() {
                 <Card progress={0} text={"Физика 9 класс"} tags={["Полезно знать"]} image={i13} bgColor={"#A81E69"}
                       lessonId={"ch1"}/>
                 <Card progress={0} text={"Информатика и прикладная математика"} tags={["Полезно знать"]} image={i12}
-                      bgColor={"#007a4f"} className={"py"} lessonId={"ch1"}/>
+                      bgColor={"#007a4f"} className={"py"} lessonId={"infm"}/>
 
             </div>
         </div>

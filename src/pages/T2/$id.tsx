@@ -4,6 +4,7 @@ import {Test} from "src/data/types.ts";
 import {ChangeEvent, useCallback, useRef, useState} from "react";
 import {Header} from "src/pages/T2/components/Header/Header.tsx";
 import {SingleChTest} from "src/pages/T2/components/SingleChTest/SingleChTest.tsx";
+import InfmProblem from "src/pages/T2/components/InfmProblem/InfmProblem.tsx";
 
 function SingleQTest(props: { test: Extract<Test, { type: "single-q" }> }) {
     const [isCorrect, setCorrect] = useState(false)
@@ -190,6 +191,9 @@ const T2Page = () => {
                 {tests}
             </div>
             break
+        }
+        case "infm_problem": {
+          element =<InfmProblem prob_id={e.problem_id}/>
         }
     }
     return <>
