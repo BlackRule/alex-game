@@ -1,9 +1,13 @@
-.header {
+.line {
     display: flex;
     align-items: center;
     justify-content: space-between;
     position: relative;
     z-index: 2;
+}
+.subline{
+    display: flex;
+    gap: 10px;
 }
 
 .b1 {

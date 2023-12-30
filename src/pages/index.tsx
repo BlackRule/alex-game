@@ -1,3 +1,3 @@
-import Main from "./Main/Main.tsx";
+import Main from "src/pages/main/Main.tsx";
 
 export default Main;

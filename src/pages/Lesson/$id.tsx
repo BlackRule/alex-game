@@ -26,7 +26,7 @@ const Lesson = () => {
 
         <div className={styles.topics}>
             {topics.map((t, i) =>
-                    <><Link to={`/T2/${id}_${i}_0_0`}>{t.name}</Link></>
+              <Link key={`/T2/${id}_${i}_0_0`} to={`/T2/${id}_${i}_0_0`}>{t.name}</Link>
             )}
         </div>
     </>;

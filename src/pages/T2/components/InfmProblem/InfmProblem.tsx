@@ -36,12 +36,12 @@ function InfmProblem(props: { prob_id: number }) {
       <input type="hidden" name="prob_id" value="1"/>
       <input type="hidden" name="contest_id" value="1"/>
       <label>Language:</label>
-      <select name="lang_id">
+      <select name="lang_id" defaultValue="23">
         <option value="2">gcc - GNU C 13.2.1</option>
         <option value="3">g++ - GNU C++ 13.2.1</option>
         <option value="13">python - Python 2.7.18</option>
         <option value="14">perl - Perl 5.36.3</option>
-        <option value="23" selected>python3 - Python3 3.11.6</option>
+        <option value="23">python3 - Python3 3.11.6</option>
         <option value="25">make - Make 4.4.1</option>
         <option value="28">gcc-vg - GNU C (valgrind) 13.2.1</option>
         <option value="29">g++-vg - GNU C++ (valgrind) 13.2.1</option>

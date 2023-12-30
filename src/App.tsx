@@ -1,19 +1,21 @@
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
-import type {} from '@redux-devtools/extension' // required for devtools typing
+import type {} from '@redux-devtools/extension'
 
 const pages = import.meta.glob("./pages/**/*.tsx", {eager: true})
 const routes = [];
 for (const path of Object.keys(pages)) {
   const fileName = path.match(/\.\/pages\/(.*)\.tsx$/)?.[1];
-  if (!fileName) {
+  if (!fileName||fileName.includes('components')) {
     continue;
   }
 
   const normalizedPathName = fileName.includes("$")
       ? fileName.replace("$", ":")
       : fileName.replace(/\/index/, "");
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
+
+  if (pages[path].default===undefined) {
+    console.log(fileName, pages[path].default)
+  }
   routes.push({
     path: fileName === "index" ? "/" : `/${normalizedPathName.toLowerCase()}`,
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -28,21 +30,24 @@ for (const path of Object.keys(pages)) {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     ErrorBoundary: pages[path]?.ErrorBoundary,
-  });
+  })
 }
+
 const router = createBrowserRouter(
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    routes.map(({Element, ErrorBoundary, ...rest}) => ({
+  routes.map(({Element, ErrorBoundary, ...rest}) => {
+    return {
       ...rest,
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       element: <Element/>,
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       ...(ErrorBoundary && {errorElement: <ErrorBoundary/>}),
-    }))
-);
+    }
+  })
+)
 
 function App() {
 
