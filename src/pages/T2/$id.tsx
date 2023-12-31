@@ -1,10 +1,11 @@
 import {useParams} from "react-router-dom";
-import {topicsForSubject} from "src/data/data.ts";
+import {subjects} from "src/data/data.ts";
 import {Test} from "src/data/types.ts";
 import {ChangeEvent, useCallback, useRef, useState} from "react";
-import {Header} from "src/pages/T2/components/Header/Header.tsx";
-import {SingleChTest} from "src/pages/T2/components/SingleChTest/SingleChTest.tsx";
-import InfmProblem from "src/pages/T2/components/InfmProblem/InfmProblem.tsx";
+import {Header} from "src/pages/t2/components/Header/Header.tsx";
+import {SingleChTest} from "src/pages/t2/components/SingleChTest/SingleChTest.tsx";
+import InfmProblem from "src/pages/t2/components/InfmProblem/InfmProblem.tsx";
+import {NumericalString} from "src/types.ts";
 
 function SingleQTest(props: { test: Extract<Test, { type: "single-q" }> }) {
     const [isCorrect, setCorrect] = useState(false)
@@ -142,15 +143,14 @@ function MultiChTest(props: { test: Extract<Test, { type: "multi-ch" }> }) {
 
 const T2Page = () => {
     const id = useParams()["id"] ?? "";
-    //fixme are strings technically
-    const [tId, t1Id, t2id, t3id] = id.split('_') as [string, number, number, number]
+    const [tId, t1Id, t2Id, t3Id] = id.split('_') as [string, NumericalString, NumericalString, NumericalString]
 
     let element
-    const e = topicsForSubject[tId].t1s[t1Id].t2s[t2id].t3s[t3id]
+    const e = subjects[tId].t1s[t1Id].t2s[t2Id].t3s[t3Id]
     switch (e.type) {
-        case "problem":
+        case "problem-with-no-solution-needed":
             element=<>
-                <SingleChTest test={{type:'single-ch',text:e.text,correctId:-1,options:[
+                <SingleChTest test={{type:'single-ch',id:e.id,text:e.text,correctId:-1,options:[
                     'Решил верно, посмотрел видеоразбор',
                         'Решил верно, не смотрел видеоразбор (уверен в решении)',
                         'Решил неверно, посмотрел видеоразбор',
@@ -160,7 +160,7 @@ const T2Page = () => {
             break;
         case "video":
             element = <div>
-                <h1>{topicsForSubject[tId].t1s[t1Id].t2s[t2id].name}</h1>
+                <h1>{subjects[tId].t1s[t1Id].t2s[t2Id].name}</h1>
                 <video src={e.url} controls></video>
                 <div dangerouslySetInnerHTML={{__html: e.text}}/>
             </div>
@@ -185,6 +185,10 @@ const T2Page = () => {
                     case "text":
                         // tests.push(<TextTest test={test} key={i}/>)
                         break;
+                    case "programming-problem": {
+                        tests.push(<InfmProblem prob_id={test.problem_id} tId={tId} t1Id={t1Id} t2Id={t2Id} t3Id={t3Id}/>)
+                        break;
+                    }
                 }
             }
             element = <div>
@@ -192,9 +196,7 @@ const T2Page = () => {
             </div>
             break
         }
-        case "infm_problem": {
-          element =<InfmProblem prob_id={e.problem_id}/>
-        }
+        
     }
     return <>
         <Header tId={tId} t1Id={t1Id}/>

@@ -2,7 +2,7 @@ import {addDoc, collection, deleteDoc, doc, onSnapshot, orderBy, query} from 'fi
 import {auth, db, storage} from './firebase.ts'
 import {deleteObject, ref} from 'firebase/storage'
 import {toastifyError} from './ToastifyError.tsx'
-import {TodoData} from './types.ts'
+import {NumericalString, TodoData} from './types.ts'
 import {useEffect, useState} from 'react'
 import {User, onAuthStateChanged, createUserWithEmailAndPassword as createUserWithEmailAndPassword_} from 'firebase/auth'
 import {Todo as TodoType} from './types.ts'
@@ -34,9 +34,10 @@ export const useUser = () => {
 }
 
 
-export const addRunUuid = async (runUuid:string, user) => {
-  // if (user === null) return
-  // addDoc(collection(db, `users/${user.uid}/todos`), {...todo_data} as TodoData)
+export const addRunUuid = async (runUuid:string, user,id:string) => {
+  if (user === null) return
+  console.log(collection(db, `users/${user.uid}/${id}`))
+  // addDoc(collection(db, `users/${user.uid}/{}`), {...todo_data} as TodoData)
 }
 
 export const useTodos = (user) => {

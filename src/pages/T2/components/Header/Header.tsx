@@ -4,12 +4,12 @@ import ico1 from "src/pages/T2/img/ico1.png";
 import ico2 from "src/pages/T2/img/ico2.png";
 import ico3 from "src/pages/T2/img/ico3.png";
 import {T1} from "src/data/types.ts";
-import {colors, topicsForSubject} from "src/data/data.ts";
+import {subjects} from "src/data/data.ts";
 
 export function Header(props: { tId: string,t1Id:number } ) {
     const t1Id=props.t1Id
-    const ts: T1[] = Object.keys(topicsForSubject).includes(props.tId) ?
-        topicsForSubject[props.tId].t1s : []
+    const ts: T1[] = Object.keys(subjects).includes(props.tId) ?
+        subjects[props.tId].t1s : []
     const links = []
     for (let i1 = 0; i1 < ts[t1Id].t2s.length; i1++) {
         const t2 = ts[t1Id].t2s[i1];
@@ -33,7 +33,7 @@ export function Header(props: { tId: string,t1Id:number } ) {
     }
     return <><Link to={`/Lesson/${props.tId}`}>Назад</Link>
         <div className={styles.Header}
-             style={{backgroundColor:colors[topicsForSubject[props.tId].type]}}>
+             style={{backgroundColor:subjects[props.tId].bgColor}}>
             {links}
         </div>
     </>;

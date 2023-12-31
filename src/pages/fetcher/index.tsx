@@ -92,8 +92,9 @@ async function extracted(res2, j: number):Promise<T2> {
     const re2 = (await getResource(element.hash)).element
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    if( re2.hasOwnProperty('video')){
+    if( Object.prototype.hasOwnProperty.call(re2, 'video')){
         return {name:re2.video.title,t3s:[{
+            id:element.hash,
             type:'video',
                 url:re2.video.url,
                 text:re2.video.synopsis

@@ -17,7 +17,7 @@ services:
 
   ejudge:
     restart: always
-    image: "blackav/ejudge:3.11.0"
+    image: "blackav/ejudge:master"
     container_name: "ejudge"
     ports:
       - "192.168.1.72:80:80"

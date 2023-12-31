@@ -6,7 +6,11 @@ export const infm: T1[] = [{
         name: 'Подтема 1',
         t3s: [
             {
-                type: 'infm_problem',problem_id:1
+                type: 'testsGroup',
+                tests:[{
+                    id:"1",
+                    type: 'programming-problem',problem_id:1
+                }]
             }
         ]
     }]

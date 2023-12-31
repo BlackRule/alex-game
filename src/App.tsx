@@ -13,7 +13,9 @@ for (const path of Object.keys(pages)) {
       ? fileName.replace("$", ":")
       : fileName.replace(/\/index/, "");
 
+  // @ts-ignore
   if (pages[path].default===undefined) {
+    // @ts-ignore
     console.log(fileName, pages[path].default)
   }
   routes.push({

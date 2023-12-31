@@ -1,21 +1,32 @@
 import styles from './InfmProblem.module.scss'
 import {useEffect, useState} from "react";
+import {NumericalString} from "src/types.ts";
 const host = `http://195.46.171.236:4192`;
-const authorization = "Bearer AQAAFpdbgCLkazBbRCWsrVXi_Yy1LtD7yWDHOxFJ57wSHAo";
+const token = 'utyfN76E8TfUCUXlfZikpj2CTInW7E_JYSs1JZOFIs4';
+const authorization = `Bearer AQAA${token}`;
 
-function InfmProblem(props: { prob_id: number }) {
+interface InfmProblemProps {
+  tId: string
+}
+
+interface InfmProblemProps {
+  tId: string
+}
+
+function InfmProblem(props: { prob_id: NumericalString,tId: string,t1Id:NumericalString,t2Id:NumericalString,t3Id:NumericalString}) {
   const [html, setHtml] = useState(null)
   useEffect(()=>{
     (async ()=>{
-      const r = await (await fetch(`${host}/ej/api/v1/client/problem-statement-json?problem=${props.prob_id}&contest_id=1`, {
+      const r = await (await fetch(`${host}/ej/api/v1/client/problem-statement-json?contest_id=1&problem=${props.prob_id}`, {
         "headers": {
           "accept": "text/html",
           authorization,
         }
       })).text()
+      setHtml(r)
     })()
     return ()=>{}
-  })
+  },[props.prob_id])
   return <>
     <div dangerouslySetInnerHTML={{__html: html}}></div>
     <form method="post" encType={'multipart/form-data'} className={styles.form} onSubmit={(e)=>{

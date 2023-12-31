@@ -1,15 +1,15 @@
 import {Link, useParams} from "react-router-dom";
 import styles from './style.module.scss'
 import {Progress} from "./components/Progress/Progress.tsx";
-import {topicsForSubject} from "src/data/data.ts";
+import {subjects} from "src/data/data.ts";
 import {T1} from "src/data/types.ts";
 
 
 
 const Lesson = () => {
     const id = useParams()["id"] ?? "";
-    const topics: T1[] = Object.keys(topicsForSubject).includes(id) ?
-        topicsForSubject[id].t1s : []
+    const topics: T1[] = Object.keys(subjects).includes(id) ?
+        subjects[id].t1s : []
     return <>
         <header>
             <div className={styles.name}>Химия 8 класс</div>
