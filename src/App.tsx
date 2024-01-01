@@ -1,7 +1,11 @@
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import type {} from '@redux-devtools/extension'
 
-const pages = import.meta.glob("./pages/**/*.tsx", {eager: true})
+const pages: Record<string, {
+  ErrorBoundary?: any;
+  action?: any;
+  loader?: any;
+  default?:any}> = import.meta.glob("./pages/**/*.tsx", {eager: true})
 const routes = [];
 for (const path of Object.keys(pages)) {
   const fileName = path.match(/\.\/pages\/(.*)\.tsx$/)?.[1];
@@ -13,24 +17,14 @@ for (const path of Object.keys(pages)) {
       ? fileName.replace("$", ":")
       : fileName.replace(/\/index/, "");
 
-  // @ts-ignore
   if (pages[path].default===undefined) {
-    // @ts-ignore
-    console.log(fileName, pages[path].default)
+    console.log(fileName)
   }
   routes.push({
     path: fileName === "index" ? "/" : `/${normalizedPathName.toLowerCase()}`,
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     Element: pages[path].default,
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     loader: pages[path]?.loader,
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     action: pages[path]?.action,
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     ErrorBoundary: pages[path]?.ErrorBoundary,
   })
 }

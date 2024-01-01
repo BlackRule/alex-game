@@ -1,7 +1,8 @@
 import {CSSProperties} from "react";
 import {NumericalString} from "src/types.ts";
 
-export type ProgrammingProblem = { type: "programming-problem", problem_id: NumericalString };
+export type ProgrammingProblem = {
+  type: "programming-problem", problem_id: NumericalString };
 export type SingleQ = { type: "single-q", correct: string };
 export type MultiQ = { type: "multi-q", questions: { text: string, correct: string }[] };
 export type SingleCh = { type: "single-ch", options: string[], correctId: number };

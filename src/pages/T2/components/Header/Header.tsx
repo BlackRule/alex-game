@@ -5,8 +5,9 @@ import ico2 from "src/pages/T2/img/ico2.png";
 import ico3 from "src/pages/T2/img/ico3.png";
 import {T1} from "src/data/types.ts";
 import {subjects} from "src/data/data.ts";
+import {NumericalString} from "src/types.ts";
 
-export function Header(props: { tId: string,t1Id:number } ) {
+export function Header(props: { tId: string,t1Id:NumericalString } ) {
     const t1Id=props.t1Id
     const ts: T1[] = Object.keys(subjects).includes(props.tId) ?
         subjects[props.tId].t1s : []
@@ -23,7 +24,7 @@ export function Header(props: { tId: string,t1Id:number } ) {
                 case "testsGroup":
                     i = ico2
                     break
-                case "problem":
+                case "problem-with-no-solution-needed":
                     i = ico3
                     break
             }

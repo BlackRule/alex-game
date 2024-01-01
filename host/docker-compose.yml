@@ -27,7 +27,9 @@ services:
       - EJUDGE_MYSQL_DATABASE=ejudge
       - EJUDGE_MYSQL_HOST=mariadb
     volumes:
-      - ejudge_data:/home/judges
+      - type: bind
+        source: ./ejudge_data
+        target: /home/judges
     depends_on:
       - mariadb
 

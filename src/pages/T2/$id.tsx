@@ -186,7 +186,7 @@ const T2Page = () => {
                         // tests.push(<TextTest test={test} key={i}/>)
                         break;
                     case "programming-problem": {
-                        tests.push(<InfmProblem prob_id={test.problem_id} tId={tId} t1Id={t1Id} t2Id={t2Id} t3Id={t3Id}/>)
+                        tests.push(<InfmProblem test={test} key={i}/>)
                         break;
                     }
                 }
