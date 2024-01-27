@@ -22,15 +22,6 @@ export const infm: T1[] = [{
           }
         ]
       },
-      {
-        type: 'testsGroup',
-        tests: [
-          {
-            id: "3",
-            type: 'programming-problem', problem_id: "3"
-          }
-        ]
-      }
     ]
   }]
 }

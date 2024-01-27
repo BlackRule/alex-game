@@ -1,11 +1,10 @@
-/* $Id$ */
-
 #include <stdio.h>
 
 int main(void)
 {
     int a, b, c;
     scanf("%d%d", &a, &b);
+    printf("0"); fflush(stdout);
     c = a - 1;
     int s = 0;
     while (c != a) {

@@ -6,6 +6,7 @@ import {addRunId, useUser} from "src/service.ts";
 
 function InfmProblem(props: { test:Extract<Test, { type: "programming-problem" }> }) {
   const user = useUser()
+  console.log(user?.uid)
   const [html, setHtml] = useState<string|null>(null)
   const [compilers, setCompilers] = useState<Compiler[]|null>(null)
   useEffect(()=>{
@@ -22,7 +23,7 @@ function InfmProblem(props: { test:Extract<Test, { type: "programming-problem" }
     <form method="post" encType={'multipart/form-data'} className={styles.form} onSubmit={(e)=>{
       e.preventDefault();
       submit_run(new FormData(e.target as HTMLFormElement)).then((res) => {
-        if (res.ok === true) return addRunId(res.result.run_id, user, props.test.id)
+        if (res.ok) return addRunId(res.result.run_id, user, props.test.id)
       }) .catch((error) => console.error(error))
     }}>
       <input type="hidden" name="prob_id" value={props.test.id}/>
