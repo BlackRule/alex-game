@@ -1,0 +1,98 @@
+#! /bin/bash
+# Copyright (c) 2019-2023 Alexander Chernov <cher@ejudge.ru>
+
+# A script for compilation of C# programs using the dotnet compiler.
+# Usage: dotnet-cs in-file out-file
+
+# using EJUDGE_FLAGS we may pass additional flags
+
+prefix="/opt/ejudge"
+
+LANG_CONFIG_DIR="/home/judges/compile/conf/lang.d"
+[ "${EJUDGE_LANG_CONFIG}" = "" ] && EJUDGE_LANG_CONFIG="${LANG_CONFIG_DIR}/dotnet-cs.cfg"
+
+if [ -f "${EJUDGE_LANG_CONFIG}" ]
+then
+  . "${EJUDGE_LANG_CONFIG}"
+else
+  version="unknown"
+  DOTNETRUN="mcs"
+  DOTNETDIR=""
+fi
+
+if [ x"${version}" = x ]
+then
+  echo "This language is not supported." >&2
+  exit 1
+fi
+
+if [ x"${DOTNETDIR}" != x ]
+then
+  PATH="${DOTNETDIR}/bin:${PATH}"
+fi
+
+#[[ "${EJUDGE_FLAGS}" = "" ]] && EJUDGE_FLAGS="-optimize+"
+
+unset LANG
+unset LC_ALL
+unset LC_MESSAGES
+unset LANGUAGE
+
+export DOTNET_NOLOGO=true
+export DOTNET_CLI_TELEMETRY_OPTOUT=true
+
+TEMPLATE_DIR="${prefix}/share/ejudge/template"
+TEMPLATE_FILE="${TEMPLATE_DIR}/dotnet-cs.tbz"
+
+if [ -w "${TEMPLATE_DIR}" ]
+then
+    if [ ! -f "${TEMPLATE_FILE}" ]
+    then
+        echo "No template file, creating." >&2
+
+        if ! "${DOTNETRUN}" new console -lang 'c#' -n solution
+        then
+            echo "Compilation failed." >&2
+            exit 1
+        fi
+
+        if ! tar cfz "${TEMPLATE_FILE}" solution
+        then
+            echo "Template file creation failed." >&2
+            exit 1
+        fi
+        rm -rf solution
+    fi
+
+    if [ ! -f "${TEMPLATE_FILE}" ]
+    then
+        echo "No template file, exiting." >&2
+        exit 1
+    fi
+
+    if ! tar xf "${TEMPLATE_FILE}"
+    then
+        echo "Failed to restore template file." >&2
+        exit 1
+    fi
+else
+    if ! "${DOTNETRUN}" new console -lang 'c#' -n solution
+    then
+        echo "Compilation failed." >&2
+        exit 1
+    fi
+fi
+
+cat "$1" > solution/Program.cs
+
+target="${DOTNETTARGET}"
+
+if ! "${DOTNETRUN}" build -c Release solution
+then
+    echo "Compilation failed." >&2
+    exit 1
+fi
+
+mv solution/bin/Release/${target}/solution.dll "$2"
+
+exit 0

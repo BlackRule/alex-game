@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<problem
+        package = "ru.ejudge.sample_contest"
+        id = "A"
+        type = "standard">
+    <statement language="ru_RU">
+        <title>Задача A</title>
+        <description>
+            <img align="center" src="http://195.46.171.236:4192/share/qbfkdc.png" />
+            <div class="legend">
+                <p>Однажды Дмитрий шёл по набережной и решил сделать несколько панорамных фотографий подряд стоящих вдоль неё домов. Взглянув на получившиеся кадры, он заметил, что распределение высот домов ведёт себя странным образом. Чтобы убедиться в этом, Дмитрий решил численно оценить асимметрию распределения высот на каждой фотографии.</p>
+
+                <p>Помогите ему решить эту задачу. Асимметрию множества чисел <strong><span style="color: #f1c40f;">{h<sub>l</sub> , . . . , h<sub>r </sub>}</span></strong> стоит вычислять по формуле:<br/>
+                    <img alt="" height="127" src="https://davmedia.cups.online/editor_uploads/2023/07/27/qbfkdc.png" width="741"/></p>
+
+                <h3>Замечание</h3>
+
+                <p>В примере <span style="color: #f1c40f;"><em><strong>μ</strong></em></span> = 3.8, а <span style="color: #f1c40f;"><em><strong>σ<sup>2</sup></strong></em></span> = 6.16.<br/>
+                    <br/>
+                    &nbsp;</p>
+
+                <h3>Система оценки</h3>
+
+                <p>Всего в задаче 50 тестов (не считая примера). Каждый тест оценивается в 2 балла.&nbsp;</p>
+            </div>
+            <div><div class="WorkareaFormatCardNEW_wrapper__ZfoBl"><h3 class="WorkareaFormatCardNEW_title__J1Gza">Формат входных данных</h3><div class="WorkareaFormatCardNEW_content__JWSfb">Первая строка содержит единственное натуральное число <em><strong>N</strong></em> (<em><strong>1≤ N ≤ 10<sup>5</sup></strong></em>) — число домов на набережной.<br/>
+                <br/>
+                Вторая строка содержит <em><strong>N</strong></em> натуральных чисел <em><strong>h<sub>i</sub></strong></em> (<em><strong>1≤ h<sub>i</sub> ≤ 10<sup>3</sup></strong></em>) — высота <em><strong>i</strong></em>-го дома. Дома пронумерованы подряд от 1 до <em><strong>n</strong></em>. Гарантируется, что любые два соседних дома имеют разную высоту.<br/>
+                <br/>
+                Третья строка содержит единственное натуральное число <em><strong>Q</strong></em> (<em><strong>1≤ N ≤ 10<sup>5</sup></strong></em>) — число фотографий, сделанных Дмитрием.<br/>
+                <br/>
+                Следующие <em><strong>Q</strong></em> строк содержат описания соответствующих фотографий: два разделённых пробелом натуральных числа <em><strong>l<sub>t</sub></strong></em> и <em><strong>r<sub>t</sub></strong></em> (<em><strong>1≤ l<sub>t</sub> &lt; r<sub>t</sub> ≤ n</strong></em>) — номера левого и правого дома на <em><strong>t</strong></em>-й фотографии.</div></div><div class="WorkareaFormatCardNEW_wrapper__ZfoBl"><h3 class="WorkareaFormatCardNEW_title__J1Gza">Формат выходных данных</h3><div class="WorkareaFormatCardNEW_content__JWSfb">Выведите <em><strong>Q</strong></em> вещественных чисел с плавающей точкой: результаты оценки соответствующих фотографий.<br/>
+                <br/>
+                Ответ считается верным, если его абсолютная или относительная погрешность не превышает <em><strong>10<sup>-6</sup></strong></em>.</div></div><div class="WorkareaSolutionExamplesNEW_wrapper__bO4KO"><h3 class="WorkareaSolutionExamplesNEW_title__LDzjQ">Пример 1</h3><div class="WorkareaSolutionExamplesNEW_row__Us3EO"><div class="WorkareaSolutionExamplesNEW_column__V3Wzv"><div class="WorkareaSolutionExamplesNEW_subTitle__i0l8F"><span class="WorkareaSolutionExamplesNEW_subTitleText__nivD-">Входные данные:</span><div class="WorkareaSolutionExamplesNEW_copy_button_wrapper__a-lOj" data-tooltip="true"><button class="WorkareaSolutionExamplesNEW_example_clip__MrOy+"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" class="WorkareaSolutionExamplesNEW_copy_icon__acfoz"><g id="copy_outline_28"><path id="â³ Icon Color" d="M10.9287 1.28571C11.7684 1.28571 12.4828 1.82239 12.7476 2.57148L6.51085 2.57142C5.36461 2.57142 4.94896 2.69077 4.52991 2.91488C4.11086 3.13899 3.78199 3.46786 3.55788 3.8869C3.33377 4.30595 3.21443 4.72161 3.21443 5.86784L3.21448 12.7474C2.4654 12.4827 1.92871 11.7683 1.92871 10.9286V5.14285C1.92871 3.01261 3.65561 1.28571 5.78585 1.28571H10.9287ZM13.5001 3.85713C14.5653 3.85713 15.4287 4.72058 15.4287 5.78571V14.1428C15.4287 15.208 14.5653 16.0714 13.5001 16.0714H6.42871C5.36359 16.0714 4.50014 15.208 4.50014 14.1428V5.78571C4.50014 4.72058 5.36359 3.85713 6.42871 3.85713H13.5001ZM13.5001 5.14285H6.42871C6.07367 5.14285 5.78585 5.43067 5.78585 5.78571V14.1428C5.78585 14.4979 6.07367 14.7857 6.42871 14.7857H13.5001C13.8552 14.7857 14.143 14.4979 14.143 14.1428V5.78571C14.143 5.43067 13.8552 5.14285 13.5001 5.14285Z" fill="#5C86F0"></path></g></svg></button><span class="Tooltip_tooltip__ulDbL WorkareaSolutionExamplesNEW_clip_button_tooltip__nVD5-">Копировать текст</span></div></div><div class="WorkareaSolutionExamplesNEW_content__fObdj" id="input-311"><pre><code>5
+                1 2 3 5 8
+                2
+                1 5
+                ​​​​​​​1 3</code></pre></div></div><div class="WorkareaSolutionExamplesNEW_column__V3Wzv"><div class="WorkareaSolutionExamplesNEW_subTitle__i0l8F"><span class="WorkareaSolutionExamplesNEW_subTitleText__nivD-">Выходные данные:</span><div class="WorkareaSolutionExamplesNEW_copy_button_wrapper__a-lOj" data-tooltip="true"><button class="WorkareaSolutionExamplesNEW_example_clip__MrOy+"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" class="WorkareaSolutionExamplesNEW_copy_icon__acfoz"><g id="copy_outline_28"><path id="â³ Icon Color" d="M10.9287 1.28571C11.7684 1.28571 12.4828 1.82239 12.7476 2.57148L6.51085 2.57142C5.36461 2.57142 4.94896 2.69077 4.52991 2.91488C4.11086 3.13899 3.78199 3.46786 3.55788 3.8869C3.33377 4.30595 3.21443 4.72161 3.21443 5.86784L3.21448 12.7474C2.4654 12.4827 1.92871 11.7683 1.92871 10.9286V5.14285C1.92871 3.01261 3.65561 1.28571 5.78585 1.28571H10.9287ZM13.5001 3.85713C14.5653 3.85713 15.4287 4.72058 15.4287 5.78571V14.1428C15.4287 15.208 14.5653 16.0714 13.5001 16.0714H6.42871C5.36359 16.0714 4.50014 15.208 4.50014 14.1428V5.78571C4.50014 4.72058 5.36359 3.85713 6.42871 3.85713H13.5001ZM13.5001 5.14285H6.42871C6.07367 5.14285 5.78585 5.43067 5.78585 5.78571V14.1428C5.78585 14.4979 6.07367 14.7857 6.42871 14.7857H13.5001C13.8552 14.7857 14.143 14.4979 14.143 14.1428V5.78571C14.143 5.43067 13.8552 5.14285 13.5001 5.14285Z" fill="#5C86F0"></path></g></svg></button><span class="Tooltip_tooltip__ulDbL WorkareaSolutionExamplesNEW_clip_button_tooltip__nVD5- WorkareaSolutionExamplesNEW_output_clip_button_tooltip__rhpEP Tooltip_tooltip_upperLeft__KGBJU">Копировать текст</span></div></div><div class="WorkareaSolutionExamplesNEW_content__fObdj" id="output-311"><pre><code>0.621634857962435
+                0.0</code></pre></div></div></div></div></div>
+        </description>
+    </statement>
+    <examples>
+        <example>
+            <input>1
+                2</input>
+            <output>3</output>
+        </example>
+    </examples>
+</problem>

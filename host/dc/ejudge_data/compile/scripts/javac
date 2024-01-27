@@ -1,0 +1,98 @@
+#!/bin/bash
+# Copyright (c) 2004-2023 Alexander Chernov <cher@ejudge.ru>
+
+# Usage: javac in-file out-file
+
+# using EJUDGE_FLAGS we may pass additional flags
+
+prefix="/opt/ejudge"
+exec_prefix="/opt/ejudge"
+libexecdir="/opt/ejudge/libexec"
+
+LANG_CONFIG_DIR="/home/judges/compile/conf/lang.d"
+[ "${EJUDGE_LANG_CONFIG}" = "" ] && EJUDGE_LANG_CONFIG="${LANG_CONFIG_DIR}/javac.cfg"
+
+infile="$1"
+outfile="$2"
+
+if [ -f "${EJUDGE_LANG_CONFIG}" ]
+then
+    . "${EJUDGE_LANG_CONFIG}"
+else
+    version="unknown"
+    JAVARUN="/usr/bin/java"
+    JAVACRUN="/usr/bin/javac"
+    JAVADIR="/usr"
+    JAVAVER="1.6"
+fi
+
+if [ x"${version}" = x ]
+then
+    echo "This language is not supported." >&2
+    exit 1
+fi
+
+# avoid setting JAVA_HOME if it is already set
+# actually, setting of JAVA_HOME breaks some systems, so don't do it
+MY_JAVA_HOME="${JAVA_HOME}"
+if [ "${MY_JAVA_HOME}" = "" ]
+then
+    MY_JAVA_HOME="${JAVADIR}"
+    PATH="${MY_JAVA_HOME}/bin:${PATH}"
+    export PATH
+fi
+
+rm -f *.class
+
+JAVA_CLASSNAME="${libexecdir}/ejudge/lang/java-classname.jar"
+
+# Extract the class name from the source file
+USER_CLASS=`"${JAVARUN}" -jar "${JAVA_CLASSNAME}" "${infile}"`
+if [ "${USER_CLASS}" = "" ]
+then
+    echo "failed to detect java class name" >&2
+    exit 1
+fi
+
+USER_SOURCE="${USER_CLASS}.java"
+
+if [ "${infile}" != "${USER_SOURCE}" ]
+then
+    if ! mv "${infile}" "${USER_SOURCE}"
+    then
+        echo "failed to rename source file" >&2
+        exit 1
+    fi
+fi
+
+if [ "${EJUDGE_MAIN_CLASS}" != "" ]
+then
+    MAIN_CLASS="${EJUDGE_MAIN_CLASS}"
+else
+    MAIN_CLASS="${USER_CLASS}"
+fi
+
+CPOPT=
+if [ "${EJUDGE_CLASSPATH}" != "" ]
+then
+    CPOPT=" -cp ${EJUDGE_CLASSPATH} "
+fi
+
+"${JAVACRUN}" --target "${JAVAVER}" ${CPOPT} *.java || exit 1
+
+D=`dirname "${JAVARUN}"`
+if [ "$D" = "." ]
+then
+    JARRUN=jar
+else
+    JARRUN="${D}/jar"
+fi
+
+MOPT=
+if [ "${EJUDGE_CLASSPATH}" != "" ]
+then
+    echo "Class-Path: ${EJUDGE_CLASSPATH}" > manifest.txt
+    MOPT=" -m manifest.txt "
+fi
+
+exec "${JARRUN}" -c -f "${outfile}" ${MOPT} -e "${MAIN_CLASS}" *.class

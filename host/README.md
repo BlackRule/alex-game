@@ -1,6 +1,6 @@
 see https://ejudge.ru/
 ***
-/etc/nginx/sites-available/default
+install https://docs.docker.com/engine/install/ubuntu/
 ***
 contest settings -> Problems (serve.cfg) -> 
 for problems set Enable textarea input form? yes 

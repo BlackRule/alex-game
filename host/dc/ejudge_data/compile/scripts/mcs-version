@@ -1,0 +1,237 @@
+#!/bin/sh
+# Copyright (c) 2005-2018 Alexander Chernov <cher@ejudge.ru>
+
+[ "${LANG_CONFIG_DIR}" != "" ] || LANG_CONFIG_DIR="/home/judges/compile/conf/lang.d"
+
+compiler_name="Mono C#"
+
+common_config() {
+  echo 'long_name="'"${compiler_name}"'"'
+  echo 'src_sfx=".cs"'
+  echo 'exe_sfx=".exe"'
+  echo 'arch="msil"'
+  echo 'insecure=1'
+}
+
+failure() {
+  rm -f conftest*
+  echo 'version='
+  echo 'arg="'"${arg}"'"'
+  common_config
+  echo 'MONORUN=false'
+  echo 'MONODIR='
+  echo 'MONOVER='
+  echo 'MCSRUN=false'
+  echo 'MCSDIR='
+  [ "${verbose}" = 1 ] && echo "no" >&2
+  exit 1
+}
+
+recheck_visual_csharp() {
+    [ "${verbose}" = 1 ] && echo -n "checking whether Visual Studio C# is available..." >&2
+
+    local_MCSRUN="${MCSRUN}"
+    [ "${local_MCSRUN}" = "" ] && local_MCSRUN="csc"
+    if ! local_MCSDIR=`dirname "${MCSRUN}"`
+    then
+        [ "${verbose}" = 1 ] && echo "no" >&2
+        return
+    fi
+
+    if [ "${local_MCSDIR}" = . ]
+    then
+        local_MONORUN=mono
+        local_MONODIR=
+        local_MCSDIR=
+    else
+        local_MONORUN="${local_MCSDIR}/mono"
+        local_MONODIR="${local_MCSDIR}"
+    fi
+
+    if ! "${local_MONORUN}" --version >/dev/null 2>&1
+    then
+        [ "${verbose}" = 1 ] && echo "no" >&2
+        return
+    fi
+
+    if ! local_MONOVER=`"${local_MONORUN}" --version 2>&1 | grep "version" | awk '{gsub(",","",$5); print $5;}'`
+    then
+        [ "${verbose}" = 1 ] && echo "no" >&2
+        return
+    fi
+
+    if [ "${local_MONOVER}" = "" ]
+    then
+        [ "${verbose}" = 1 ] && echo "no" >&2
+        return
+    fi
+
+    if ! "${local_MCSRUN}" /version >/dev/null 2>&1
+    then
+        [ "${verbose}" = 1 ] && echo "no" >&2
+        return
+    fi
+
+    if ! version=`"${local_MCSRUN}" /version 2>&1`
+    then
+        [ "${verbose}" = 1 ] && echo "no" >&2
+        return
+    fi
+
+    if [ "${version}" = "" ]
+    then
+        [ "${verbose}" = 1 ] && echo "no" >&2
+        return
+    fi
+
+    cat > conftest.cs <<EOF
+    public class conftest
+    {
+        public static void Main()
+        {
+            System.Console.WriteLine("OK");
+        }
+    }
+EOF
+
+    if ! "${local_MCSRUN}" conftest.cs -out:conftest.exe >/dev/null 2>&1
+    then
+        [ "${verbose}" = 1 ] && echo "no" >&2
+        return
+    fi
+
+    if [ ! -f conftest.exe ]
+    then
+        [ "${verbose}" = 1 ] && echo "no" >&2
+        return
+    fi
+
+    if ! "${local_MONORUN}" conftest.exe >/dev/null 2>&1
+    then
+        [ "${verbose}" = 1 ] && echo "no" >&2
+        return
+    fi
+
+    rm -f ./conftest*
+    echo 'version="'"${version}"'"'
+    echo 'arg="'"${arg}"'"'
+    compiler_name="Microsoft Visual C#"
+    common_config
+    echo 'MONORUN="'"${local_MONORUN}"'"'
+    echo 'MONODIR="'"${local_MONODIR}"'"'
+    echo 'MONOVER="'"${local_MONOVER}"'"'
+    echo 'MCSRUN="'"${local_MCSRUN}"'"'
+    echo 'MCSDIR="'"${local_MCSDIR}"'"'
+    [ "${verbose}" = 1 ] && echo "yes, ${local_MCSRUN}, ${version}" >&2
+    exit 0
+}
+
+unset LANG
+unset LC_ALL
+unset LC_MESSAGES
+unset LANGUAGE
+
+if [ x"$1" = x-v ]
+then
+  verbose=1
+  shift
+fi
+
+# recheck the language
+if [ x"$1" = x-r ]
+then
+  arg="$2"
+  [ x"$2" != x ] && MCSRUN="$2"
+
+  recheck_visual_csharp
+
+  [ "${MCSRUN}" = "" ] && MCSRUN="mcs"
+
+  [ "${verbose}" = 1 ] && echo -n "checking whether Mono C# is available..." >&2
+  MCSDIR=`dirname "${MCSRUN}"` || failure
+  if [ "${MCSDIR}" = . ]
+  then
+    MONORUN=mono
+    MONODIR=
+    MCSDIR=
+  else
+    MONORUN="${MCSDIR}/mono"
+    MONODIR="${MCSDIR}"
+  fi
+  "${MONORUN}" --version >/dev/null 2>&1 || failure
+  MONOVER=`"${MONORUN}" --version 2>&1 | grep "version" | awk '{gsub(",","",$5); print $5;}'` || failure
+  [ "${MONOVER}" != "" ] || failure
+  "${MCSRUN}" --version >/dev/null 2>&1 || failure
+  version=`"${MCSRUN}" --version 2>&1 | grep "version" | awk '{gsub(",","",$5); print $5;}'` || failure
+  [ "${version}" != "" ] || failure
+  cat > conftest.cs <<EOF
+public class conftest
+{
+  public static void Main()
+  {
+    System.Console.WriteLine("OK");
+  }
+}
+EOF
+  "${MCSRUN}" conftest.cs -out:conftest.exe >/dev/null 2>&1 || failure
+  [ -f conftest.exe ] || failure
+  "${MONORUN}" conftest.exe >/dev/null 2>&1 || failure
+
+  rm -f ./conftest*
+  echo 'version="'"${version}"'"'
+  echo 'arg="'"${arg}"'"'
+  common_config
+  echo 'MONORUN="'"${MONORUN}"'"'
+  echo 'MONODIR="'"${MONODIR}"'"'
+  echo 'MONOVER="'"${MONOVER}"'"'
+  echo 'MCSRUN="'"${MCSRUN}"'"'
+  echo 'MCSDIR="'"${MCSDIR}"'"'
+  [ "${verbose}" = 1 ] && echo "yes, ${MCSRUN}, ${version}" >&2
+  exit 0
+fi
+
+if [ x"$1" = x-l ]
+then
+  echo "Mono C# compiler [http://www.mono-project.com]"
+  exit 0
+fi
+
+[ "${EJUDGE_LANG_CONFIG}" = "" ] && EJUDGE_LANG_CONFIG="${LANG_CONFIG_DIR}/mcs.cfg"
+
+if [ -f "${EJUDGE_LANG_CONFIG}" ]
+then
+  . "${EJUDGE_LANG_CONFIG}"
+else
+  MCSRUN="mcs"
+  MCSDIR=""
+fi
+
+if [ x"${MCSRUN}" = x -o x"${MCSRUN}" = xfalse ]
+then
+  echo "This language is not supported." >&2
+  exit 1
+fi
+
+if [ x"${MCSDIR}" != x ]
+then
+  PATH="${MCSDIR}/bin:${PATH}"
+fi
+
+if [ x"$1" = x-p ]
+then
+    echo "${MCSRUN}"
+    exit 0
+fi
+
+if "${MCSRUN}" /version >/dev/null 2>&1
+then
+    # looks like Microsoft Visual C#
+    [ x"$1" = x-f ] && echo -n "Microsoft Visual C# "
+    exec "${MCSRUN}" /version 2>&1
+fi
+
+"${MCSRUN}" --version >/dev/null 2>&1 || exit 1
+
+[ x"$1" = x-f ] && echo -n "Mono C# "
+
+"${MCSRUN}" --version 2>&1 | grep "version" | awk '{gsub(",","",$5); print $5;}'

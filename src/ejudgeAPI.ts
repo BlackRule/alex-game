@@ -1,8 +1,6 @@
 import {NumericalString} from "src/types.ts";
 
 const host = `http://195.46.171.236:4192`;
-const token = 'utyfN76E8TfUCUXlfZikpj2CTInW7E_JYSs1JZOFIs4';
-const authorization = `Bearer AQAA${token}`;
 
 type APIError<SYMBOL="?", MESSAGE="??"> = {
   "ok": false,
@@ -23,7 +21,6 @@ export const submit_run = (formData: FormData) => {
     body: formData,
     headers: {
       "accept": "application/json",
-      authorization,
     }
   })
     .then((response) => response.json() as
@@ -38,7 +35,6 @@ export const get_problem_statement = (problem_id: NumericalString) => {
   return fetch(`${host}/ej/api/v1/client/problem-statement-json?contest_id=1&problem=${problem_id}`, {
     "headers": {
       "accept": "text/html",
-      authorization,
     }
   }).then((r) => r.text())
 }
@@ -52,7 +48,6 @@ export const get_contest_status = () => {
   return fetch(`${host}/ej/api/v1/client/contest-status-json?contest_id=1`, {
     "headers": {
       "accept": "application/json",
-      authorization,
     }
   }).then((r) => r.json() as Promise<{ "server_time": number } & (APIOk<{
     "compilers": Compiler[]

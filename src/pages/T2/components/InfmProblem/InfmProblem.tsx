@@ -9,7 +9,9 @@ function InfmProblem(props: { test:Extract<Test, { type: "programming-problem" }
   const [html, setHtml] = useState<string|null>(null)
   const [compilers, setCompilers] = useState<Compiler[]|null>(null)
   useEffect(()=>{
-    get_problem_statement(props.test.problem_id).then((r)=>setHtml(r))
+    get_problem_statement(props.test.problem_id).then((r)=>
+      setHtml(r)
+    )
     get_contest_status().then((r)=>{
       if(r.ok===true) setCompilers(r.result.compilers)
     })

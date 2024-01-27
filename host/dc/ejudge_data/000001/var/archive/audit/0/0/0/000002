@@ -1,0 +1,32 @@
+Date: 2023-12-31 08:58:32
+From: user (uid 2)
+Ip: 192.168.1.72
+Command: submit
+Status: ok
+Run-id: 2
+Run-status: CG
+
+Date: 2023-12-31 08:58:32
+From: SYSTEM
+Status: testing completed
+Run-id: 2
+Run-status: OK
+  Profiling information:
+  Request start time:                2023-12-31 08:58:32.576514
+  Request completion time:           2023-12-31 08:58:32.658904
+  Total testing duration:            0.082
+  Waiting in compile queue duration: 0.001
+  Compilation duration:              0.008
+  Waiting in serve queue duration:   0.001
+  Waiting in run queue duration:     0.001
+  Testing duration:                  0.071
+  Post-processing duration:          0.000
+  Waiting in serve queue duration:   0.000
+
+Date: 2023-12-31 08:59:37
+From: ejudge (uid 1)
+Ip: 192.168.1.64
+Command: clear-run
+Status: ok
+Run-id: 2
+

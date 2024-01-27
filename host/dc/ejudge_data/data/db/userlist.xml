@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<userlist member_serial="1" name="unknown">
+  <user id="1" never_clean="yes" registered="2023-08-12 20:21:53" last_login="2023-08-12 20:21:53">
+    <login public="no">ejudge</login>
+    <password method="sha1">bdce9473ce403707618df5a2484a59017310cab9</password>
+    <team_password method="sha1">bdce9473ce403707618df5a2484a59017310cab9</team_password>
+    <name>ejudge administrator</name>
+    <email public="no">ejudge@localhost</email>
+    <contests>
+      <contest id="1" status="ok"/>
+    </contests>
+  </user>
+</userlist>

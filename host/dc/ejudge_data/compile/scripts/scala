@@ -1,0 +1,73 @@
+#!/bin/bash
+# Copyright (c) 2017-2023 Alexander Chernov <cher@ejudge.ru>
+
+# Usage: scala in-file out-file
+# The working dir must not contain any .class files.
+
+# using EJUDGE_FLAGS we may pass additional flags
+
+prefix="/opt/ejudge"
+exec_prefix="/opt/ejudge"
+libexecdir="/opt/ejudge/libexec"
+
+LANG_CONFIG_DIR="/home/judges/compile/conf/lang.d"
+[ "${EJUDGE_LANG_CONFIG}" = "" ] && EJUDGE_LANG_CONFIG="${LANG_CONFIG_DIR}/scala.cfg"
+
+infile="$1"
+outfile="$2"
+
+if [ -f "${EJUDGE_LANG_CONFIG}" ]
+then
+  . "${EJUDGE_LANG_CONFIG}"
+else
+  version="unknown"
+  SCALARUN="scala"
+  SCALACRUN="scalac"
+  SCALADIR="/usr"
+fi
+
+if [ x"${version}" = x ]
+then
+  echo "This language is not supported." >&2
+  exit 1
+fi
+
+if [ x"EJUDGE_ENABLE_SBT" == x1 ]
+then
+    # Add assembly plugin to generate all-on-one jar
+    mkdir project
+    cat << EOF > project/plugins.sbt
+addSbtPlugin("com.eed3si9n" % "sbt-assembly" % "2.1.1")
+EOF
+
+    SCALA_BUILD_SBT_PATH="${prefix}/share/ejudge/template/build.sbt"
+    [ x"${SCALA_TARGET_VERSION}" != x ] || SCALA_TARGET_VERSION=2.13
+    [ x"${SCALA_BUILD_VERSION}" != x ] || SCALA_BUILD_VERSION=2.13.11
+
+    if [ -r "${SCALA_BUILD_SBT_PATH}" ]
+    then
+        cp -p "${SCALA_BUILD_SBT_PATH}" build.sbt || exit 1
+    else
+        cat > build.sbt <<EOF
+ThisBuild / version := "0.1.0-SNAPSHOT"
+
+ThisBuild / scalaVersion := "${SCALA_BUILD_VERSION}"
+
+libraryDependencies += "com.softwaremill.sttp.client3" %% "core" % "3.8.13"
+
+Compile / packageBin / packageOptions +=
+  Package.ManifestAttributes("Implementation-language" -> "Scala")
+
+lazy val root = (project in file("."))
+  .settings(
+    name := "Solution"
+  )
+EOF
+    fi
+    sbt assembly || exit 1
+    exec mv target/${SCALA_TARGET_VERSION}/*.jar "${outfile}"
+else
+    rm -f *.class *.jar
+    "${SCALACRUN}" "${infile}" -d output.jar || exit 1
+    exec mv output.jar "${outfile}"
+fi

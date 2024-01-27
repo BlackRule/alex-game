@@ -1,0 +1,71 @@
+Date: 2023-12-31 08:26:53
+From: user (uid 2)
+Ip: 192.168.1.72
+Command: submit
+Status: ok
+Run-id: 0
+Run-status: CG
+
+Date: 2023-12-31 08:26:53
+From: SYSTEM
+Status: testing completed
+Run-id: 0
+Run-status: OK
+  Profiling information:
+  Request start time:                2023-12-31 08:26:53.796501
+  Request completion time:           2023-12-31 08:26:53.948218
+  Total testing duration:            0.152
+  Waiting in compile queue duration: 0.001
+  Compilation duration:              0.015
+  Waiting in serve queue duration:   0.002
+  Waiting in run queue duration:     0.006
+  Testing duration:                  0.127
+  Post-processing duration:          0.000
+  Waiting in serve queue duration:   0.001
+
+Date: 2023-12-31 08:44:22
+From: ejudge (uid 1)
+Ip: 192.168.1.64
+Command: set-marked
+Status: ok
+Run-id: 0
+
+Date: 2023-12-31 08:44:28
+From: ejudge (uid 1)
+Ip: 192.168.1.64
+Command: clear-run
+Status: ok
+Run-id: 0
+
+Date: 2023-12-31 08:44:46
+From: user (uid 2)
+Ip: 192.168.1.72
+Command: submit
+Status: ok
+Run-id: 0
+Run-status: CG
+
+Date: 2023-12-31 08:44:46
+From: SYSTEM
+Status: testing completed
+Run-id: 0
+Run-status: OK
+  Profiling information:
+  Request start time:                2023-12-31 08:44:46.853615
+  Request completion time:           2023-12-31 08:44:46.960193
+  Total testing duration:            0.107
+  Waiting in compile queue duration: 0.002
+  Compilation duration:              0.016
+  Waiting in serve queue duration:   0.001
+  Waiting in run queue duration:     0.002
+  Testing duration:                  0.085
+  Post-processing duration:          0.000
+  Waiting in serve queue duration:   0.000
+
+Date: 2023-12-31 08:50:57
+From: ejudge (uid 1)
+Ip: 192.168.1.64
+Command: clear-run
+Status: ok
+Run-id: 0
+

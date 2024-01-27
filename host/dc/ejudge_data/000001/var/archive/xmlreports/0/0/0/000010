@@ -1,0 +1,36 @@
+Content-type: text/xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<testing-report run-id="10" judge-id="2" status="OK" scoring="ACM" run-tests="1" judge-uuid="9afbd69f-88e6-497b-85c1-2a31d4924033" contest-id="1" real-time-available="yes" max-memory-used-available="yes" correct-available="yes" tests-passed="1" time-limit-ms="1000" real-time-limit-ms="5000" marked-flag="no" verdict-bits="1" >
+  <uuid>36277ca8-6acb-49a5-8b4a-f95f750df472</uuid>
+  <comment>
+
+run: ATTENTION: core file pattern in /proc/sys/kernel/core_pattern
+is set to pipe the core file to a helper program.
+This is NOT RECOMMENDED for correct judging.
+Please, modify the core_pattern file.
+For example, consider disabling abrtd.
+
+</comment>
+  <host>8aa00791b3bb</host>
+  <cpu-model>Intel(R) Core(TM) i5-9400F CPU @ 2.90GHz</cpu-model>
+  <cpu-mhz>2903.999</cpu-mhz>
+  <compiler_output></compiler_output>
+  <tests>
+    <test num="1" status="OK" time="13" real-time="14" max-memory-used="401408"  checker-comment="OK" >
+  <program-stats-str>{ utime=13, stime=0, ptime=13, rtime=14, maxvsz=401408, maxrss=7675904, nvcsw=1, nivcsw=0 }</program-stats-str>
+  <checker-stats-str>{ utime=1, stime=0, ptime=1, rtime=2, maxvsz=401408, maxrss=2138112, nvcsw=1, nivcsw=0 }</checker-stats-str>
+      <input original-size="5" size="5">1
+1
+
+</input>
+      <output original-size="2" size="2">0
+</output>
+      <correct original-size="2" size="2">0
+</correct>
+      <stderr original-size="0" size="0"></stderr>
+      <checker original-size="3" size="3">OK
+</checker>
+    </test>
+  </tests>
+</testing-report>

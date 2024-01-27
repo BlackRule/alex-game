@@ -1,0 +1,25 @@
+Date: 2024-01-01 11:41:07
+From: user (uid 2)
+Ip: 192.168.1.72
+Command: submit
+Status: ok
+Run-id: 8
+Run-status: CG
+
+Date: 2024-01-01 11:41:07
+From: SYSTEM
+Status: testing completed
+Run-id: 8
+Run-status: WA
+  Profiling information:
+  Request start time:                2024-01-01 11:41:07.216981
+  Request completion time:           2024-01-01 11:41:07.339577
+  Total testing duration:            0.123
+  Waiting in compile queue duration: 0.004
+  Compilation duration:              0.010
+  Waiting in serve queue duration:   0.002
+  Waiting in run queue duration:     0.014
+  Testing duration:                  0.089
+  Post-processing duration:          0.000
+  Waiting in serve queue duration:   0.002
+
