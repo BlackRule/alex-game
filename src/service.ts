@@ -4,7 +4,8 @@ import {deleteObject, ref} from 'firebase/storage'
 import {toastifyError} from './ToastifyError.tsx'
 import {useEffect, useState} from 'react'
 import {User, onAuthStateChanged, createUserWithEmailAndPassword as createUserWithEmailAndPassword_} from 'firebase/auth'
-import {NumericalString, RunData} from "src/types.ts";
+import {NumericalString} from "src/types.ts";
+import {RunData} from "src/ejudgeAPI.ts";
 
 export const createUserWithEmailAndPassword=(email, password) => {
   return createUserWithEmailAndPassword_(auth, email, password).then(()=>addDoc(collection(db, 'users'), {}))
@@ -33,30 +34,33 @@ export const useUser = () => {
 }
 
 
-export const addRunId = async (runId:NumericalString, user, id:string) => {
+export const addRunId = async (runData:RunData, user, id:string) => {
   if (user === null) return
-  addDoc(collection(db, `users/${user.uid}/problems/${id}/runs`), {id:runId} as RunData)
+  //todo {runId} as RunData why no ts error "{runId} missing timestamp property" ?!
+  addDoc(collection(db, `users/${user.uid}/problems/${id}/runs`), runData)
 }
 
-/*export const useTodos = (user) => {
-  const [todos, setTodos] = useState<TodoType[]>([])
-  useEffect(() => {
-    if (user === null) return
-    const q = query(collection(db, `users/${user.uid}/todos`), orderBy('timestamp', 'desc'))
 
+
+type ExcludeKeys<T,ExcludedKeys extends string="id"> = {
+  [K in keyof T]: T[K]
+} & {
+  [K in ExcludedKeys]?: never
+}
+export const useCollection = <CollectionType extends ExcludeKeys<object&{timestamp:number}>>(path:string|null) => {
+  const [collectionContents, setCollectionContents] = useState<CollectionType[]>([])
+  useEffect(() => {
+    if(path===null) return
+    const q = query(collection(db, path), orderBy('timestamp', 'asc'))
     onSnapshot(q, (snapshot) => {
-      setTodos(snapshot.docs.map(doc => ({
+      setCollectionContents(snapshot.docs.map(doc => ({
         id: doc.id,
-        imgUrl: doc.data().imgUrl,
-        text: doc.data().text,
-        timestamp: doc.data().timestamp
+        ...(doc.data() as CollectionType)
       })))
-      // snapshot.docs.map(doc => console.log(doc))
-      // console.log(snapshot.docs)
     })
-  }, [user]) //deps were [input]
-  return todos
-}*/
+  }, [path])
+  return collectionContents
+}
 
 export const deleteTodo = (todo, user) => {
   if (user === null) return
