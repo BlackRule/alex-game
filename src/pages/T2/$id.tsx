@@ -1,42 +1,42 @@
 import {useParams} from "react-router-dom";
 import {subjects} from "src/data/data.ts";
-import {Test} from "src/data/types.ts";
+import {Question} from "src/data/types.ts";
 import {ChangeEvent, useCallback, useRef, useState} from "react";
 import {Header} from "src/pages/t2/components/Header/Header.tsx";
-import {SingleChTest} from "src/pages/t2/components/SingleChTest/SingleChTest.tsx";
+import {SingleChQuestion} from "src/pages/t2/components/SingleChQuestion/SingleChQuestion.tsx";
 import InfmProblem from "src/pages/t2/components/InfmProblem/InfmProblem.tsx";
 import {NumericalString} from "src/types.ts";
 
-function SingleQTest(props: { test: Extract<Test, { type: "single-q" }> }) {
+function SingleQQuestion(props: { question: Extract<Question, { type: "single-q" }> }) {
     const [isCorrect, setCorrect] = useState(false)
     const inputRef = useRef<HTMLInputElement>(null)
     const answer = useCallback(() => {
         if (inputRef.current === null) return
-        if (inputRef.current.value == props.test.correct) setCorrect(true)
+        if (inputRef.current.value == props.question.correct) setCorrect(true)
         else setCorrect(false)
-    }, [props.test.correct])
+    }, [props.question.correct])
     return <div style={{display: 'flex', flexDirection: 'column'}}>
-        <div dangerouslySetInnerHTML={{__html: props.test.text}}/>
+        <div dangerouslySetInnerHTML={{__html: props.question.text}}/>
         <div>{isCorrect ? 'Верно' : 'Неверно'}</div>
         <input type="text" ref={inputRef}/>
         <button onClick={answer}>Ответить</button>
     </div>;
 }
 
-function MultiQTest(props: { test: Extract<Test, { type: "multi-q" }> }) {
+function MultiQQuestion(props: { question: Extract<Question, { type: "multi-q" }> }) {
     const [isCorrect, setCorrect] = useState(false)
     // todo
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     const inputRefs = []
     const questions = []
-    for (let i = 0; i < props.test.questions.length; i++) {
+    for (let i = 0; i < props.question.questions.length; i++) {
         // todo
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // eslint-disable-next-line react-hooks/rules-of-hooks
         inputRefs.push(useRef<HTMLInputElement>(null))
         questions.push(<div key={i}>
-            {props.test.questions[i].text}
+            {props.question.questions[i].text}
             <input type="text" ref={inputRefs[i]}/>
         </div>)
     }
@@ -48,13 +48,13 @@ function MultiQTest(props: { test: Extract<Test, { type: "multi-q" }> }) {
             // @ts-ignore
             const inputRef = inputRefs[i]
             if (inputRef.current === null) return
-            if (inputRef.current.value != props.test.questions[i].correct) c = false
+            if (inputRef.current.value != props.question.questions[i].correct) c = false
         }
         if (c) setCorrect(true)
         else setCorrect(false)
-    }, [props.test])
+    }, [props.question])
     return <div style={{display: 'flex', flexDirection: 'column'}}>
-        <div dangerouslySetInnerHTML={{__html: props.test.text}}/>
+        <div dangerouslySetInnerHTML={{__html: props.question.text}}/>
         <div>{isCorrect ? 'Верно' : 'Неверно'}</div>
         {questions}
         <button onClick={answer}>Ответить</button>
@@ -71,7 +71,7 @@ function ArrWOEl<T>(arr: T[], el: T) {
     return arr
 }
 
-function MultiChTest(props: { test: Extract<Test, { type: "multi-ch" }> }) {
+function MultiChQuestion(props: { question: Extract<Question, { type: "multi-ch" }> }) {
     const [isCorrect, setCorrect] = useState(false)
     const [selectedValues, setSelectedValues] = useState<number[]>([])
     const change = useCallback((e: ChangeEvent<HTMLInputElement>) => {
@@ -81,12 +81,12 @@ function MultiChTest(props: { test: Extract<Test, { type: "multi-ch" }> }) {
         })
     }, [])
     const answer = useCallback(() => {
-        if (JSON.stringify(selectedValues) == JSON.stringify(props.test.correctIds)) setCorrect(true)
+        if (JSON.stringify(selectedValues) == JSON.stringify(props.question.correctIds)) setCorrect(true)
         else setCorrect(false)
-    }, [props.test.correctIds, selectedValues])
+    }, [props.question.correctIds, selectedValues])
     const options = []
-    for (let i = 0; i < props.test.options.length; i++) {
-        const o = props.test.options[i]
+    for (let i = 0; i < props.question.options.length; i++) {
+        const o = props.question.options[i]
         options.push(<div key={i}>
             <label style={{display: "flex"}}>
                 <input type="checkbox" value={i} name="option" onChange={change}/>
@@ -96,27 +96,27 @@ function MultiChTest(props: { test: Extract<Test, { type: "multi-ch" }> }) {
         </div>)
     }
     return <div style={{display: 'flex', flexDirection: 'column'}}>
-        <div dangerouslySetInnerHTML={{__html: props.test.text}}/>
+        <div dangerouslySetInnerHTML={{__html: props.question.text}}/>
         <div>{isCorrect ? 'Верно' : 'Неверно'}</div>
         <div>{options}</div>
         <button onClick={answer}>Ответить</button>
     </div>;
 }
 
-/*function TextTest(props: { test: Extract<Test, { type: 'text' }> }) {
+/*function TextQuestion(props: { question: Extract<Question, { type: 'text' }> }) {
     const [isCorrect, setCorrect] = useState(false)
     // todo
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     const inputRefs = []
     const questions = []
-    /!*for (let i = 0; i < props.test.questions.length; i++) {
+    /!*for (let i = 0; i < props.question.questions.length; i++) {
         // todo
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // eslint-disable-next-line react-hooks/rules-of-hooks
         inputRefs.push(useRef<HTMLInputElement>(null))
         questions.push(<div key={i}>
-            {props.test.questions[i].text}
+            {props.question.questions[i].text}
             <input type="text" ref={inputRefs[i]}/>
         </div>)
     }*!/
@@ -128,13 +128,13 @@ function MultiChTest(props: { test: Extract<Test, { type: "multi-ch" }> }) {
             // @ts-ignore
             const inputRef = inputRefs[i]
             if (inputRef.current === null) return
-            if (inputRef.current.value != props.test.questions[i].correct) c = false
+            if (inputRef.current.value != props.question.questions[i].correct) c = false
         }
         if (c) setCorrect(true)
         else setCorrect(false)
-    }, [props.test])
+    }, [props.question])
     return <div style={{display: 'flex', flexDirection: 'column'}}>
-        <div dangerouslySetInnerHTML={{__html: props.test.text}}/>
+        <div dangerouslySetInnerHTML={{__html: props.question.text}}/>
         <div>{isCorrect ? 'Верно' : 'Неверно'}</div>
         {questions}
         <button onClick={answer}>Ответить</button>
@@ -150,7 +150,7 @@ const T2Page = () => {
     switch (e.type) {
         case "problem-with-no-solution-needed":
             element=<>
-                <SingleChTest test={{type:'single-ch',id:e.id,text:e.text,correctId:-1,options:[
+                <SingleChQuestion question={{type:'single-ch',id:e.id,text:e.text,correctId:-1,options:[
                     'Решил верно, посмотрел видеоразбор',
                         'Решил верно, не смотрел видеоразбор (уверен в решении)',
                         'Решил неверно, посмотрел видеоразбор',
@@ -165,34 +165,34 @@ const T2Page = () => {
                 <div dangerouslySetInnerHTML={{__html: e.text}}/>
             </div>
             break
-        case "testsGroup": {
-            const tests = []
-            for (let i = 0; i < e.tests.length; i++) {
-                const test = e.tests[i]
-                switch (test.type) {
+        case "questionsGroup": {
+            const questions = []
+            for (let i = 0; i < e.questions.length; i++) {
+                const question = e.questions[i]
+                switch (question.type) {
                     case "single-q":
-                        tests.push(<SingleQTest test={test} key={i}/>)
+                        questions.push(<SingleQQuestion question={question} key={i}/>)
                         break;
                     case "multi-q":
-                        tests.push(<MultiQTest test={test} key={i}/>)
+                        questions.push(<MultiQQuestion question={question} key={i}/>)
                         break;
                     case "single-ch":
-                        tests.push(<SingleChTest test={test} key={i}/>)
+                        questions.push(<SingleChQuestion question={question} key={i}/>)
                         break;
                     case "multi-ch":
-                        tests.push(<MultiChTest test={test} key={i}/>)
+                        questions.push(<MultiChQuestion question={question} key={i}/>)
                         break;
                     case "text":
-                        // tests.push(<TextTest test={test} key={i}/>)
+                        // questions.push(<TextQuestion question={question} key={i}/>)
                         break;
                     case "programming-problem": {
-                        tests.push(<InfmProblem test={test} key={i}/>)
+                        questions.push(<InfmProblem question={question} key={i}/>)
                         break;
                     }
                 }
             }
             element = <div>
-                {tests}
+                {questions}
             </div>
             break
         }

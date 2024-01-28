@@ -1,8 +1,8 @@
-import {Test} from "src/data/types.ts";
+import {Question} from "src/data/types.ts";
 import {ChangeEvent, ReactElement, useCallback, useState} from "react";
-import styles from './SingleChTest.module.scss'
+import styles from './SingleChQuestion.module.scss'
 
-export function SingleChTest(props: { test: Extract<Test, { type: "single-ch" }>, video?:string }) {
+export function SingleChQuestion(props: { question: Extract<Question, { type: "single-ch" }>, video?:string }) {
     const [isCorrect, setCorrect] = useState(false)
     const [selectedValue, setSelectedValue] = useState(0)
     const [videoVisible, setVideoVisible] = useState(false)
@@ -10,12 +10,12 @@ export function SingleChTest(props: { test: Extract<Test, { type: "single-ch" }>
         setSelectedValue(Number(e.target.value))
     }, [])
     const answer = useCallback(() => {
-        if (selectedValue == props.test.correctId) setCorrect(true)
+        if (selectedValue == props.question.correctId) setCorrect(true)
         else setCorrect(false)
-    }, [props.test.correctId, selectedValue])
+    }, [props.question.correctId, selectedValue])
     const options = []
-    for (let i = 0; i < props.test.options.length; i++) {
-        const o = props.test.options[i]
+    for (let i = 0; i < props.question.options.length; i++) {
+        const o = props.question.options[i]
         options.push(<div key={i}>
             <label style={{display: "flex"}}>
                 <input type="radio" value={i} name="option" onChange={change}/>
@@ -26,7 +26,7 @@ export function SingleChTest(props: { test: Extract<Test, { type: "single-ch" }>
     }
     let verdict =  <div> {isCorrect ? 'Верно' : 'Неверно'} </div> as ReactElement | null
     let tags = null as ReactElement | null
-    if (props.test.correctId === -1)  {
+    if (props.question.correctId === -1)  {
         verdict = null
         tags = <>
         {videoVisible?
@@ -42,7 +42,7 @@ export function SingleChTest(props: { test: Extract<Test, { type: "single-ch" }>
         </>
     }
     return <div style={{display: 'flex', flexDirection: 'column'}}>
-        <div dangerouslySetInnerHTML={{__html: props.test.text}}/>
+        <div dangerouslySetInnerHTML={{__html: props.question.text}}/>
         {tags}
         {verdict}
         <div>{options}</div>

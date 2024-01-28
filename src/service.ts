@@ -1,11 +1,11 @@
-import {addDoc, collection, deleteDoc, doc, onSnapshot, orderBy, query} from 'firebase/firestore'
+import {addDoc, collection, deleteDoc, doc, onSnapshot, orderBy, query, setDoc} from 'firebase/firestore'
 import {auth, db, storage} from './firebase.ts'
 import {deleteObject, ref} from 'firebase/storage'
 import {toastifyError} from './ToastifyError.tsx'
 import {useEffect, useState} from 'react'
 import {User, onAuthStateChanged, createUserWithEmailAndPassword as createUserWithEmailAndPassword_} from 'firebase/auth'
-import {NumericalString} from "src/types.ts";
 import {RunData} from "src/ejudgeAPI.ts";
+import {NumericalString} from "src/types.ts";
 
 export const createUserWithEmailAndPassword=(email, password) => {
   return createUserWithEmailAndPassword_(auth, email, password).then(()=>addDoc(collection(db, 'users'), {}))
@@ -37,7 +37,12 @@ export const useUser = () => {
 export const addRunId = async (runData:RunData, user, id:string) => {
   if (user === null) return
   //todo {runId} as RunData why no ts error "{runId} missing timestamp property" ?!
-  addDoc(collection(db, `users/${user.uid}/problems/${id}/runs`), runData)
+  addDoc(collection(db, `users/${user.uid}/questions/${id}/runs`), runData)
+}
+
+export const markAsSolvedCorrectly = async (question_id:string, user) => {
+  if (user === null) return
+  setDoc(doc(db, `users/${user.uid}/questions/`,question_id), { solvedCorrectly: true }, { merge: true });
 }
 
 

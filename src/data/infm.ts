@@ -5,8 +5,8 @@ export const infm: T1[] = [{
     name: 'Подтема 1',
     t3s: [
       {
-        type: 'testsGroup',
-        tests: [
+        type: 'questionsGroup',
+        questions: [
           {
             id: "1",
             type: 'programming-problem', problem_id: "1"
@@ -14,8 +14,8 @@ export const infm: T1[] = [{
         ]
       },
       {
-        type: 'testsGroup',
-        tests: [
+        type: 'questionsGroup',
+        questions: [
           {
             id: "2",
             type: 'programming-problem', problem_id: "2"

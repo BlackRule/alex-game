@@ -21,7 +21,7 @@ export function Header(props: { tId: string,t1Id:NumericalString } ) {
                 case "video":
                     i = ico1
                     break
-                case "testsGroup":
+                case "questionsGroup":
                     i = ico2
                     break
                 case "problem-with-no-solution-needed":

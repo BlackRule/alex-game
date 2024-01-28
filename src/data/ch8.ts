@@ -16,8 +16,8 @@ export const ch8: T1[] = [{
                 text: ''
             },
             {
-                type: 'testsGroup',
-                tests: [
+                type: 'questionsGroup',
+                questions: [
                     {
                         type: "single-q",
                         //region text

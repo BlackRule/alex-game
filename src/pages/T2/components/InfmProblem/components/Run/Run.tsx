@@ -24,13 +24,16 @@ const txts:{ [key in RunStatus]:string }=[
   "SUMMONED",
 ]
 
-function Run({run,...props}: { run: RunData}) {
+function Run({ run, onRunStatusOk, ...props }: { run: RunData, onRunStatusOk: () => void }) {
   const [status, setStatus] = useState<RunStatus|null>(null)
   return <div className={styles.Run}>
     {status!==null?txts[status] : "?"}
     <button onClick={async () => {
       const run_status = await get_run_status(run.runId);
-      if (run_status.ok) setStatus(run_status.result.run.status)
+      if (run_status.ok) {
+        if(run_status.result.run.status===RunStatus.OK) onRunStatusOk()
+        setStatus(run_status.result.run.status)
+      }
     }}>get run status</button>
   </div>;
 }
