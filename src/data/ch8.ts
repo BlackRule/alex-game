@@ -7,9 +7,9 @@ import v3 from './0003.mp4'
 import v4 from './0004.mp4'
 
 export const ch8: T1[] = [{
-    name: 'Химическая формула и способы её определения', t2s: [{
+    name: 'Химическая формула и способы её определения', topics: [{
         name: 'Известковая вода и углекислый газ',
-        t3s: [
+        tasks: [
             {
                 type: 'video',
                 url: v1,
@@ -99,7 +99,7 @@ export const ch8: T1[] = [{
         ]
     },{
         name: 'Броуновское движение',
-        t3s: [
+        tasks: [
             {
                 type: 'video',
                 url: v2,
@@ -108,7 +108,7 @@ export const ch8: T1[] = [{
         ]
     },{
         name: '? и ?',
-        t3s: [
+        tasks: [
             {
                 type: 'video',
                 url: v3,
@@ -117,7 +117,7 @@ export const ch8: T1[] = [{
         ]
     },{
         name: '? и ?',
-        t3s: [
+        tasks: [
             {
                 type: 'video',
                 url: v4,

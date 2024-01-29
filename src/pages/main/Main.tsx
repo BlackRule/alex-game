@@ -8,10 +8,10 @@ import {Button} from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import {useUser} from "src/service.ts";
 import {useStore} from "src/store.ts";
-import {subjects} from "src/data/data.ts";
+import {courses} from "src/data/data.ts";
 
 function Main() {
-  const [language,setLanguage] = [useStore((state) => state.language),useStore((state) => state.set)]
+  const [language] = [useStore((state) => state.language),useStore((state) => state.set)]
   const user = useUser()
   const navigate = useNavigate()
   return (
@@ -25,9 +25,9 @@ function Main() {
             :
           <>
             <div className={style.cards}>
-              {Object.entries(subjects).map(
+              {Object.entries(courses).map(
                 ([key, value])=>
-                  <Card progress={0} text={value.text} tags={value.tags} image={value.image} bgColor={value.bgColor} lessonId={key}/>
+                  <Card progress={0} text={value.text} tags={value.tags} image={value.image} bgColor={value.bgColor} courseId={key} key={key}/>
               )}
             </div>
           </>

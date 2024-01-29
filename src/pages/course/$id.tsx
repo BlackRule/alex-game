@@ -1,15 +1,15 @@
 import {Link, useParams} from "react-router-dom";
 import styles from './style.module.scss'
 import {Progress} from "./components/Progress/Progress.tsx";
-import {subjects} from "src/data/data.ts";
-import {T1} from "src/data/types.ts";
+import {courses} from "src/data/data.ts";
+import {Chapter} from "src/data/types.ts";
 
 
 
-const Lesson = () => {
+const CoursePage = () => {
     const id = useParams()["id"] ?? "";
-    const topics: T1[] = Object.keys(subjects).includes(id) ?
-        subjects[id].t1s : []
+    const chapters: Chapter[] = Object.keys(courses).includes(id) ?
+        courses[id].chapters : []
     return <>
         <header>
             <div className={styles.name}>Химия 8 класс</div>
@@ -24,12 +24,12 @@ const Lesson = () => {
             <Link to={"/"}>Назад</Link>
         </header>
 
-        <div className={styles.topics}>
-            {topics.map((t, i) =>
-              <Link key={`/T2/${id}_${i}_0_0`} to={`/T2/${id}_${i}_0_0`}>{t.name}</Link>
+        <div className={styles.chapters}>
+            {chapters.map((t, i) =>
+              <Link key={`/topic/${id}_${i}_0_0`} to={`/topic/${id}_${i}_0_0`}>{t.name}</Link>
             )}
         </div>
     </>;
 };
 
-export default Lesson;
+export default CoursePage;

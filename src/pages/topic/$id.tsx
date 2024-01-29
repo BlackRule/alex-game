@@ -1,10 +1,10 @@
 import {useParams} from "react-router-dom";
-import {subjects} from "src/data/data.ts";
+import {courses} from "src/data/data.ts";
 import {Question} from "src/data/types.ts";
 import {ChangeEvent, useCallback, useRef, useState} from "react";
-import {Header} from "src/pages/t2/components/Header/Header.tsx";
-import {SingleChQuestion} from "src/pages/t2/components/SingleChQuestion/SingleChQuestion.tsx";
-import InfmProblem from "src/pages/t2/components/InfmProblem/InfmProblem.tsx";
+import {Header} from "src/pages/topic/components/Header/Header.tsx";
+import {SingleChQuestion} from "src/pages/topic/components/SingleChQuestion/SingleChQuestion.tsx";
+import InfmProblem from "src/pages/topic/components/InfmProblem/InfmProblem.tsx";
 import {NumericalString} from "src/types.ts";
 
 function SingleQQuestion(props: { question: Extract<Question, { type: "single-q" }> }) {
@@ -28,8 +28,8 @@ function MultiQQuestion(props: { question: Extract<Question, { type: "multi-q" }
     // todo
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    const inputRefs = []
-    const questions = []
+    const inputRefs:RefObject<HTMLInputElement>[] = []
+    const questions:JSX.Element[] = []
     for (let i = 0; i < props.question.questions.length; i++) {
         // todo
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -72,19 +72,19 @@ function ArrWOEl<T>(arr: T[], el: T) {
 }
 
 function MultiChQuestion(props: { question: Extract<Question, { type: "multi-ch" }> }) {
-    const [isCorrect, setCorrect] = useState(false)
-    const [selectedValues, setSelectedValues] = useState<number[]>([])
+    const [iscorrect, setcorrect] = useState(false)
+    const [selectedvalues, setselectedvalues] = useState<number[]>([])
     const change = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-        setSelectedValues((p) => {
+        setselectedvalues((p) => {
             if (e.target.checked) return [...p, Number(e.target.value)]
             else return ArrWOEl(p, Number(e.target.value))
         })
     }, [])
     const answer = useCallback(() => {
-        if (JSON.stringify(selectedValues) == JSON.stringify(props.question.correctIds)) setCorrect(true)
-        else setCorrect(false)
-    }, [props.question.correctIds, selectedValues])
-    const options = []
+        if (JSON.stringify(selectedvalues) == JSON.stringify(props.question.correctIds)) setcorrect(true)
+        else setcorrect(false)
+    }, [props.question.correctIds, selectedvalues])
+    const options:JSX.Element[] = []
     for (let i = 0; i < props.question.options.length; i++) {
         const o = props.question.options[i]
         options.push(<div key={i}>
@@ -97,9 +97,9 @@ function MultiChQuestion(props: { question: Extract<Question, { type: "multi-ch"
     }
     return <div style={{display: 'flex', flexDirection: 'column'}}>
         <div dangerouslySetInnerHTML={{__html: props.question.text}}/>
-        <div>{isCorrect ? 'Верно' : 'Неверно'}</div>
+        <div>{iscorrect ? 'верно' : 'неверно'}</div>
         <div>{options}</div>
-        <button onClick={answer}>Ответить</button>
+        <button onClick={answer}>ответить</button>
     </div>;
 }
 
@@ -141,12 +141,12 @@ function MultiChQuestion(props: { question: Extract<Question, { type: "multi-ch"
     </div>;
 }*/
 
-const T2Page = () => {
+const TopicPage = () => {
     const id = useParams()["id"] ?? "";
-    const [tId, t1Id, t2Id, t3Id] = id.split('_') as [string, NumericalString, NumericalString, NumericalString]
+    const [tId, t1Id, topicId, taskId] = id.split('_') as [string, NumericalString, NumericalString, NumericalString]
 
     let element
-    const e = subjects[tId].t1s[t1Id].t2s[t2Id].t3s[t3Id]
+    const e = courses[tId].chapters[t1Id].topics[topicId].tasks[taskId]
     switch (e.type) {
         case "problem-with-no-solution-needed":
             element=<>
@@ -160,13 +160,13 @@ const T2Page = () => {
             break;
         case "video":
             element = <div>
-                <h1>{subjects[tId].t1s[t1Id].t2s[t2Id].name}</h1>
+                <h1>{courses[tId].chapters[t1Id].topics[topicId].name}</h1>
                 <video src={e.url} controls></video>
                 <div dangerouslySetInnerHTML={{__html: e.text}}/>
             </div>
             break
         case "questionsGroup": {
-            const questions = []
+            const questions:JSX.Element[] = []
             for (let i = 0; i < e.questions.length; i++) {
                 const question = e.questions[i]
                 switch (question.type) {
@@ -206,4 +206,4 @@ const T2Page = () => {
     </>;
 };
 
-export default T2Page;
+export default TopicPage;

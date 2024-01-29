@@ -9,7 +9,7 @@ import {
   submit_run
 } from "src/ejudgeAPI.ts";
 import {addRunId, markAsSolvedCorrectly, useCollection, useUser} from "src/service.ts";
-import Run from "src/pages/t2/components/InfmProblem/components/Run/Run.tsx";
+import Run from "src/pages/topic/components/InfmProblem/components/Run/Run.tsx";
 
 function InfmProblem(props: { question:Extract<Question, { type: "programming-problem" }> }) {
   const user = useUser()
@@ -45,8 +45,9 @@ function InfmProblem(props: { question:Extract<Question, { type: "programming-pr
       <input type="submit" value="Send!"/>
     </form>
     <div className={styles.runs}>
-      {runs.map((run) => <Run run={run} onRunStatusOk={()=>markAsSolvedCorrectly(props.question.id,user)}/>)}
+      {runs.map((run) => <Run run={run} onRunStatusOk={()=>markAsSolvedCorrectly(props.question.id,user)} key={run.runId}/>)}
     </div>
   </>;
 }
 export default InfmProblem
+

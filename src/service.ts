@@ -36,7 +36,6 @@ export const useUser = () => {
 
 export const addRunId = async (runData:RunData, user, id:string) => {
   if (user === null) return
-  //todo {runId} as RunData why no ts error "{runId} missing timestamp property" ?!
   addDoc(collection(db, `users/${user.uid}/questions/${id}/runs`), runData)
 }
 

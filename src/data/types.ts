@@ -12,9 +12,9 @@ export type Question = {id:string}&({text:string}&(SingleQ | MultiQ | SingleCh |
 export type Video = { id: string, type: "video", url: string, text: string };
 export type QuestionsGroup = { type: "questionsGroup", questions: Question[] };
 export type ProblemWithNoSolutionNeeded = { id: string,type: "problem-with-no-solution-needed", title: string, text: string, video_url: string };
-export type T3 = Video |QuestionsGroup |ProblemWithNoSolutionNeeded
-export type T2 = { name: string, t3s: T3[] }
-export type T1 = { name: string, t2s: T2[] }
+export type Task = Video |QuestionsGroup |ProblemWithNoSolutionNeeded
+export type Topic = { name: string, tasks: Task[] }
+export type Chapter = { name: string, topics: Topic[] }
 
 
-export type Subject = { [id: string]: { t1s:T1[],bgColor:CSSProperties["color"],text:string,tags:string[],image:string} }
+export type Course = { [id: string]: { chapters:Chapter[],bgColor:Exclude<CSSProperties["color"],undefined>,text:string,tags:string[],image:string} }

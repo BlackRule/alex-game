@@ -6,7 +6,13 @@ const pages: Record<string, {
   action?: any;
   loader?: any;
   default?:any}> = import.meta.glob("./pages/**/*.tsx", {eager: true})
-const routes = [];
+const routes:{
+  path: any,
+  Element:any,
+  loader:any,
+  action:any,
+  ErrorBoundary:any,
+}[] = [];
 for (const path of Object.keys(pages)) {
   const fileName = path.match(/\.\/pages\/(.*)\.tsx$/)?.[1];
   if (!fileName||fileName.includes('components')) {

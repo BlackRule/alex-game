@@ -1,9 +1,9 @@
-import {T1} from "src/data/types.ts";
+import {Chapter} from "src/data/types.ts";
 
-export const infm: T1[] = [{
-  name: 'Глава 1', t2s: [{
+export const infm: Chapter[] = [{
+  name: 'Глава 1', topics: [{
     name: 'Подтема 1',
-    t3s: [
+    tasks: [
       {
         type: 'questionsGroup',
         questions: [

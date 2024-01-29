@@ -13,7 +13,7 @@ export function SingleChQuestion(props: { question: Extract<Question, { type: "s
         if (selectedValue == props.question.correctId) setCorrect(true)
         else setCorrect(false)
     }, [props.question.correctId, selectedValue])
-    const options = []
+    const options:JSX.Element[] = []
     for (let i = 0; i < props.question.options.length; i++) {
         const o = props.question.options[i]
         options.push(<div key={i}>

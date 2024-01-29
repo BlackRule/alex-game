@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {T1, T2} from "src/data/types.ts";
+import {Chapter, Topic} from "src/data/types.ts";
 
 function getCourse2(id, course_id) {
     return get(`https://edu.sirius.online/noo-back/v74.11/course/${course_id}/learn/${id}`, fetch(`https://edu.sirius.online/noo-back/v74.11/course/${course_id}/learn/${id}`, {
@@ -87,13 +87,13 @@ async function getSubj(hash:string,id:string){
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-async function extracted(res2, j: number):Promise<T2> {
+async function extracted(res2, j: number):Promise<Topic> {
     const element = res2.elements[j]
     const re2 = (await getResource(element.hash)).element
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     if( Object.prototype.hasOwnProperty.call(re2, 'video')){
-        return {name:re2.video.title,t3s:[{
+        return {name:re2.video.title,tasks:[{
             id:element.hash,
             type:'video',
                 url:re2.video.url,
@@ -105,15 +105,15 @@ async function extracted(res2, j: number):Promise<T2> {
 }
 
 async function getCh8(r,id){
-    const result=[] as T1[]
+    const result=[] as Chapter[]
     const res = await getCourse(id)
     const re=await getResource(res.hash)
 
     for (let i = 0; i < re.course.module.length; i++) {
         const module=re.course.module[i]
         if(module.dependencies.length===0){
-            const t2s=[] as T2[]
-            result.push({name:module.title,t2s:t2s})
+            const t2s=[] as Topic[]
+            result.push({name:module.title,topics:t2s})
             const res2 = await getCourse2(module.id,id)
             for (let j = 0; j <res2.elements.length; j++) {
                 t2s.push(await extracted(res2, j))
