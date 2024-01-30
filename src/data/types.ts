@@ -2,7 +2,7 @@ import {CSSProperties} from "react";
 import {NumericalString} from "src/types.ts";
 
 export type ProgrammingProblem = {
-  type: "programming-problem", problem_id: NumericalString };
+  type: "programming-problem", /*todo rename to ej_problem_id*/problem_id: NumericalString };
 export type SingleQ = { type: "single-q", correct: string };
 export type MultiQ = { type: "multi-q", questions: { text: string, correct: string }[] };
 export type SingleCh = { type: "single-ch", options: string[], correctId: number };
@@ -17,4 +17,4 @@ export type Topic = { name: string, tasks: Task[] }
 export type Chapter = { name: string, topics: Topic[] }
 
 
-export type Course = { [id: string]: { chapters:Chapter[],bgColor:Exclude<CSSProperties["color"],undefined>,text:string,tags:string[],image:string} }
+export type Courses = { [id: string]: { chapters:Chapter[],bgColor:Exclude<CSSProperties["color"],undefined>,text:string,tags:string[]} }

@@ -10,9 +10,16 @@ import {
 } from "src/ejudgeAPI.ts";
 import {addRunId, markAsSolvedCorrectly, useCollection, useUser} from "src/service.ts";
 import Run from "src/pages/topic/components/InfmProblem/components/Run/Run.tsx";
+import {questionIdToCourseIdMap} from "src/data/data.ts";
+/*todo export declare function doc(...): DocumentReference<AppModelType, DbModelType> !*/
+import {useDocumentData} from "react-firebase-hooks/firestore";
+import {doc} from "firebase/firestore";
+import {db} from "src/firebase.ts";
 
 function InfmProblem(props: { question:Extract<Question, { type: "programming-problem" }> }) {
   const user = useUser()
+  //todo useDocumentData<Question>
+  const [question]=useDocumentData(user!==null?doc(db, `users/${user.uid}/questions/`,props.question.id):undefined)
   const [html, setHtml] = useState<string|null>(null)
   const [compilers, setCompilers] = useState<Compiler[]|null>(null)
   const runs=useCollection<RunData>(user!==null?`users/${user.uid}/questions/${props.question.problem_id}/runs`:null)
@@ -27,6 +34,7 @@ function InfmProblem(props: { question:Extract<Question, { type: "programming-pr
   },[props.question.problem_id])
 
   return <>
+    {question&& question.solvedCorrectly?<div title='задача зачтена'>✅</div>:<div title='задача не зачтена'>❌</div>}
     <div dangerouslySetInnerHTML={{__html: html??''}}></div>
     <form method="post" encType={'multipart/form-data'} className={styles.form} onSubmit={(e)=>{
       e.preventDefault();
@@ -45,7 +53,13 @@ function InfmProblem(props: { question:Extract<Question, { type: "programming-pr
       <input type="submit" value="Send!"/>
     </form>
     <div className={styles.runs}>
-      {runs.map((run) => <Run run={run} onRunStatusOk={()=>markAsSolvedCorrectly(props.question.id,user)} key={run.runId}/>)}
+      {/*todo as ...*/}
+      {runs.map((run) => <Run run={run} onRunStatusOk={()=> {
+        if(question === undefined || !question.solvedCorrectly)
+        markAsSolvedCorrectly(props.question.id, user?.uid as string, questionIdToCourseIdMap.get(props.question.id) as string)
+        else console.log("already")
+      }
+      } key={run.runId}/>)}
     </div>
   </>;
 }

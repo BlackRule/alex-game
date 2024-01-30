@@ -5,20 +5,20 @@ header{
 }
 .lines{
   display: grid;
-  grid-auto-columns: auto 1fr auto;
-
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
 }
 .lines>:first-child,.lines>:nth-child(4){
-  grid-column: 1;
+  justify-self: start;
 }
 .lines>:nth-child(2),.lines>:nth-child(5){
-  grid-column: 2;
+  justify-self: center;
 }
 .lines>:nth-child(3),.lines>:nth-child(6){
-  grid-column: 3;
+  justify-self: end;
 }
 .progress{
-  //width: 100%;
+  width: 100%;
 }
 .chapters{
   display: flex;
