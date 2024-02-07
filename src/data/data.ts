@@ -1,4 +1,4 @@
-import {infm} from "./infm.ts";
+import {infm} from "./infm.tsx";
 import {Courses} from "./types.ts";
 
 
@@ -25,7 +25,7 @@ export const courses: Courses = {
     text: "Физика 9 класс",
     tags: ["Полезно знать"],
     bgColor: "#A81E69",
-  }
+  },
 }
 
 //todo TS keys of this should match keys of courses

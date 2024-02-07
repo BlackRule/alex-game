@@ -12,7 +12,7 @@ function SingleQQuestion(props: { question: Extract<Question, { type: "single-q"
     const inputRef = useRef<HTMLInputElement>(null)
     const answer = useCallback(() => {
         if (inputRef.current === null) return
-        if (inputRef.current.value == props.question.correct) setCorrect(true)
+        if (inputRef.current.value === props.question.correct) setCorrect(true)
         else setCorrect(false)
     }, [props.question.correct])
     return <div style={{display: 'flex', flexDirection: 'column'}}>
@@ -48,7 +48,7 @@ function MultiQQuestion(props: { question: Extract<Question, { type: "multi-q" }
             // @ts-ignore
             const inputRef = inputRefs[i]
             if (inputRef.current === null) return
-            if (inputRef.current.value != props.question.questions[i].correct) c = false
+            if (inputRef.current.value !== props.question.questions[i].correct) c = false
         }
         if (c) setCorrect(true)
         else setCorrect(false)
@@ -81,7 +81,7 @@ function MultiChQuestion(props: { question: Extract<Question, { type: "multi-ch"
         })
     }, [])
     const answer = useCallback(() => {
-        if (JSON.stringify(selectedvalues) == JSON.stringify(props.question.correctIds)) setcorrect(true)
+        if (JSON.stringify(selectedvalues) === JSON.stringify(props.question.correctIds)) setcorrect(true)
         else setcorrect(false)
     }, [props.question.correctIds, selectedvalues])
     const options:JSX.Element[] = []
@@ -148,7 +148,7 @@ const TopicPage = () => {
     let element
     const e = courses[tId].chapters[t1Id].topics[topicId].tasks[taskId]
     switch (e.type) {
-        case "problem-with-no-solution-needed":
+        case "problem-with-video-solution":
             element=<>
                 <SingleChQuestion question={{type:'single-ch',id:e.id,text:e.text,correctId:-1,options:[
                     'Решил верно, посмотрел видеоразбор',
@@ -156,6 +156,11 @@ const TopicPage = () => {
                         'Решил неверно, посмотрел видеоразбор',
                         'Не решал, но посмотрел видеоразбор'
                     ]}} video={e.video_url} />
+            </>
+            break;
+        case "problem-with-no-solution-needed":
+            element=<>
+            {e.text}
             </>
             break;
         case "video":

@@ -11,9 +11,10 @@ export type Text = { type: "text", text: string, answers:string[] };
 export type Question = {id:string}&({text:string}&(SingleQ | MultiQ | SingleCh | MultiCh | Text) | ProgrammingProblem)
 export type Video = { id: string, type: "video", url: string, text: string };
 export type QuestionsGroup = { type: "questionsGroup", questions: Question[] };
-export type ProblemWithNoSolutionNeeded = { id: string,type: "problem-with-no-solution-needed", title: string, text: string, video_url: string };
-export type Task = Video |QuestionsGroup |ProblemWithNoSolutionNeeded
-export type Topic = { name: string, tasks: Task[] }
+export type ProblemWithVideoSolution = { id: string,type: "problem-with-video-solution", title: string, text: string, video_url: string };
+export type ProblemWithNoSolutionNeeded = { type: "problem-with-no-solution-needed", title: string, text: React.ReactElement };
+export type Task = Video |QuestionsGroup |ProblemWithVideoSolution|ProblemWithNoSolutionNeeded
+export type Topic = { name:/*fixme unused property*/ string, tasks: Task[] }
 export type Chapter = { name: string, topics: Topic[] }
 
 

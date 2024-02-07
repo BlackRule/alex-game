@@ -10,7 +10,7 @@ export function SingleChQuestion(props: { question: Extract<Question, { type: "s
         setSelectedValue(Number(e.target.value))
     }, [])
     const answer = useCallback(() => {
-        if (selectedValue == props.question.correctId) setCorrect(true)
+        if (selectedValue === props.question.correctId) setCorrect(true)
         else setCorrect(false)
     }, [props.question.correctId, selectedValue])
     const options:JSX.Element[] = []
