@@ -1,11 +1,12 @@
 import {useParams} from "react-router-dom";
 import {courses} from "src/data/data.ts";
 import {Question} from "src/data/types.ts";
-import {ChangeEvent, useCallback, useRef, useState} from "react";
+import {ChangeEvent, RefObject, useCallback, useRef, useState} from "react";
 import {Header} from "src/pages/topic/components/Header/Header.tsx";
 import {SingleChQuestion} from "src/pages/topic/components/SingleChQuestion/SingleChQuestion.tsx";
 import InfmProblem from "src/pages/topic/components/InfmProblem/InfmProblem.tsx";
 import {NumericalString} from "src/types.ts";
+import {MathJax} from "better-react-mathjax";
 
 function SingleQQuestion(props: { question: Extract<Question, { type: "single-q" }> }) {
     const [isCorrect, setCorrect] = useState(false)
@@ -205,9 +206,9 @@ const TopicPage = () => {
     }
     return <>
         <Header tId={tId} t1Id={t1Id}/>
-        <div>
+        <MathJax>
             {element}
-        </div>
+        </MathJax>
     </>;
 };
 

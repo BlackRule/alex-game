@@ -1,5 +1,6 @@
 import {infm} from "./infm.tsx";
 import {Courses} from "./types.ts";
+import {bioinfm} from "src/data/bioinfm.tsx";
 
 
 export const courses: Courses = {
@@ -8,24 +9,19 @@ export const courses: Courses = {
     bgColor: "#007a4f", text: "Информатика и прикладная математика",
     tags: ["Полезно знать"],
   },
-  ch9: {
-    chapters: [],
-    text: "Химия 9 класс",
-    tags: ["Полезно знать"],
-    bgColor: "#4812B2",
-  },
   bio9: {
-    chapters: [],
-    text: "Биология 9 класс",
+    chapters: bioinfm,
+    text: "Биоинформатика",
     tags: ["Полезно знать", "Словарь терминов"],
     bgColor: "#75b000",
   },
-  ph9: {
-    chapters: [],
-    text: "Физика 9 класс",
-    tags: ["Полезно знать"],
-    bgColor: "#A81E69",
+  test: {
+    chapters: bioinfm,
+    text: "Тестовый предмет",
+    tags: ["позволяет проверить платформу"],
+    bgColor: "#ff0101",
   },
+
 }
 
 //todo TS keys of this should match keys of courses

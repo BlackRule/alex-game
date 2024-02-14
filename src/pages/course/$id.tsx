@@ -18,7 +18,7 @@ const CoursePage = () => {
     const st=coursesQuestionsCount[id]
     return <>
         <header>
-            <div className={styles.name}>Химия 8 класс</div>
+            <div className={styles.name}>{courses[id].text}</div>
             <div className={styles.lines}>
                 <div>Прогресс</div>
                 <Progress progress={sc/st*100} className={styles.progress}/>

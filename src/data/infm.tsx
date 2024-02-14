@@ -1,6 +1,7 @@
 import {Chapter} from "src/data/types.ts"
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import {stackoverflowLight} from "react-syntax-highlighter/dist/esm/styles/hljs";
+import {MathJax} from "better-react-mathjax";
 
 export const infm: Chapter[] = [
   {
@@ -11,17 +12,13 @@ export const infm: Chapter[] = [
         type: 'questionsGroup',
         questions: [
           {
-            id: "1",
-            type: 'programming-problem', problem_id: "1"
-          },
-        ]
-      },
-      {
-        type: 'questionsGroup',
-        questions: [
-          {
-            id: "2",
-            type: 'programming-problem', problem_id: "2"
+            // todo Система оценки
+            //  Всего в задаче 50 тестов (не считая примера). Каждый тест оценивается в 2 балла.
+            id: "3",
+            type: 'programming-problem',
+            problem_id: "3",
+            time_limit_in_secs:3,
+            memory_limit_in_mb:256
           }
         ]
       },
@@ -36,6 +33,7 @@ export const infm: Chapter[] = [
         type: "problem-with-no-solution-needed",
         title:'Задание 1 - Легкое',
         text:<>Напишите программу, которая на ввод принимает формулу и выводит ее в графическом виде. Можно использовать различные виды библиотек и любые языки программирования. Пример простой программы на Python:<br/>
+          <span>\(int x^2dx\)</span>
           <SyntaxHighlighter language="python" style={stackoverflowLight}>
             {'python import matplotlib.pyplot as plt\n' +
               'import numpy as np\n' +

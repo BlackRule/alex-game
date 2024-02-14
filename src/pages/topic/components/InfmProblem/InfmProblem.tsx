@@ -24,15 +24,24 @@ function InfmProblem(props: { question:Extract<Question, { type: "programming-pr
   const [compilers, setCompilers] = useState<Compiler[]|null>(null)
   const runs=useCollection<RunData>(user!==null?`users/${user.uid}/questions/${props.question.problem_id}/runs`:null)
   useEffect(()=>{
-    get_problem_statement(props.question.problem_id).then((r)=>
-      setHtml(r)
-    )
+    console.log(props.question)
+    function f(lim:number,unit:string){
+      return lim===0?'нет':`${lim}${unit}`
+    }
+    get_problem_statement(props.question.problem_id).then((r)=> {
+      setHtml(`Ограничения: по времени ${f(props.question.time_limit_in_secs,'сек')} ,по памяти ${f(props.question.memory_limit_in_mb,'Мб')}<br>`+r)
+    })
     get_contest_status().then((r)=>{
       if(r.ok) setCompilers(r.result.compilers)
     })
     return ()=>{}
   },[props.question.problem_id])
-
+  useEffect(()=>{
+    if( typeof window?.MathJax !== "undefined"){
+      window.MathJax.typesetClear()
+      window.MathJax.typeset()
+    }
+  },[html])
   return <>
     {question&& question.solvedCorrectly?<div title='задача зачтена'>✅</div>:<div title='задача не зачтена'>❌</div>}
     <div dangerouslySetInnerHTML={{__html: html??''}}></div>

@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 
 function MathjaxP() {
-    const data = "When \\(a \\ne 0\\), there are two solutions to \\(ax^2 + bx + c = 0\\) and they are \\[x = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}.\\]";
+    const data = "\\(10^{-6}\\) When \\(a \\ne 0\\), there are two solutions to \\(ax^2 + bx + c = 0\\) and they are \\[x = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}.\\]";
     const [tex, setTex] =useState('')
 
     useEffect(()=>{
