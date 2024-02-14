@@ -32,8 +32,9 @@ const CoursePage = () => {
 
         <div className={styles.chapters}>
             {chapters.map((t, i) =>
-              <Link key={`/topic/${id}_${i}_0_0`} to={`/topic/${id}_${i}_0_0`}>{t.name}</Link>
+              <a key={`/topic/${id}_${i}_0_0`} href={`/topic/${id}_${i}_0_0`}>{t.name}</a>
             )}
+        {/* fixme a instead of Link because of Mathjax  */}
         </div>
     </>;
 };

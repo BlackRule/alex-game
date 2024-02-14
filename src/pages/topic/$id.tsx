@@ -197,16 +197,16 @@ const TopicPage = () => {
                     }
                 }
             }
-            element = <div>
+            element = <>
                 {questions}
-            </div>
+            </>
             break
         }
         
     }
     return <>
         <Header tId={tId} t1Id={t1Id}/>
-        <MathJax>
+        <MathJax  dynamic hideUntilTypeset={"first"}>
             {element}
         </MathJax>
     </>;

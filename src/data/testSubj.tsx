@@ -1,7 +1,6 @@
 import {Chapter} from "src/data/types.ts"
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import {stackoverflowLight} from "react-syntax-highlighter/dist/esm/styles/hljs";
-import {MathJaxFormula, MathJaxProvider} from "mathjax3-react";
 
 export const testSubj: Chapter[] = [
   {
@@ -32,6 +31,7 @@ export const testSubj: Chapter[] = [
           }
         ]
       },
+      {type:'problem-with-no-solution-needed',title:'mathjax test',text:<a href={'/mathjaxP'}>/mathjaxP</a>}
     ]
   }
   ]

@@ -1,6 +1,7 @@
 import {infm} from "./infm.tsx";
 import {Courses} from "./types.ts";
 import {bioinfm} from "src/data/bioinfm.tsx";
+import {testSubj} from "src/data/testSubj.tsx";
 
 
 export const courses: Courses = {
@@ -16,7 +17,7 @@ export const courses: Courses = {
     bgColor: "#75b000",
   },
   test: {
-    chapters: bioinfm,
+    chapters: testSubj,
     text: "Тестовый предмет",
     tags: ["позволяет проверить платформу"],
     bgColor: "#ff0101",

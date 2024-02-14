@@ -36,12 +36,6 @@ function InfmProblem(props: { question:Extract<Question, { type: "programming-pr
     })
     return ()=>{}
   },[props.question.problem_id])
-  useEffect(()=>{
-    if( typeof window?.MathJax !== "undefined"){
-      window.MathJax.typesetClear()
-      window.MathJax.typeset()
-    }
-  },[html])
   return <>
     {question&& question.solvedCorrectly?<div title='задача зачтена'>✅</div>:<div title='задача не зачтена'>❌</div>}
     <div dangerouslySetInnerHTML={{__html: html??''}}></div>
