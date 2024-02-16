@@ -17,7 +17,7 @@ function SingleQQuestion(props: { question: Extract<Question, { type: "single-q"
         else setCorrect(false)
     }, [props.question.correct])
     return <div style={{display: 'flex', flexDirection: 'column'}}>
-        <div dangerouslySetInnerHTML={{__html: props.question.text}}/>
+        {props.question.text}
         <div>{isCorrect ? 'Верно' : 'Неверно'}</div>
         <input type="text" ref={inputRef}/>
         <button onClick={answer}>Ответить</button>

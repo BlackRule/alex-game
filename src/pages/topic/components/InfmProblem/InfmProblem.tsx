@@ -1,3 +1,4 @@
+/*todo rename InfmProblem to programingProblem */
 import styles from './InfmProblem.module.scss'
 import {useEffect, useState} from "react";
 import {Question} from "src/data/types.ts";
@@ -36,6 +37,13 @@ function InfmProblem(props: { question:Extract<Question, { type: "programming-pr
     })
     return ()=>{}
   },[props.question.problem_id])
+  useEffect(()=>{
+    //fix for when refreshing http://195.46.171.236:5173/topic/bio9_0_0_0 mj not rendered
+    if( typeof window?.MathJax !== "undefined"){
+      window.MathJax.typesetClear?.()
+      window.MathJax?.typeset?.()
+    }
+  },[html])
   return <>
     {question&& question.solvedCorrectly?<div title='задача зачтена'>✅</div>:<div title='задача не зачтена'>❌</div>}
     <div dangerouslySetInnerHTML={{__html: html??''}}></div>
