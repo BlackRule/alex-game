@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Шаг 9 – Биоинформатика – Stepik.pdf -->
+<problem
+   package = "ru.ejudge.sample_contest"
+   id = "G"
+   type = "standard">
+  <keywords>G</keywords>
+  <statement language="ru_RU">
+    <title>Рестрикция-2. Множественные сайты рестрикции</title>
+    <description>
+        <p>На самом деле, в последовательностях может присутствовать более одного сайта узнавания каждой
+            рестриктазы. Доработайте программу так, чтобы она могла выполнять рестрикцию
+            последовательностей, в которых присутствует множество сайтов узнавания двух рестриктаз.</p>
+        <img src="http://195.46.171.236:4192/share/img_2.png"/>
+            <p>Ниже показаны только 3 примера
+                входных и выходных данных, для проверки задачи будут проведены дополнительные тесты.</p>
+    </description>
+    <input_format>
+        <p>последовательность
+            ДНК, сайт узнавания рестриктазы 1 и сайт узнавания рестриктазы 2. При этом в последовательности
+            может содержаться любое количество сайтов узнавания каждой из рестриктаз.
+        </p>
+    </input_format>
+    <output_format>
+        <p>. Программа должна
+            выполнить рестрикцию данного фрагмента ДНК данными рестриктазами и вывести на экран (при
+            помощи функции print() ) список всех фрагментов, образовавшихся в результате рестрикции.
+            Фрагменты в этом списке должны распологаться в том порядке, в котором они были в исходной
+            молекуле ДНК.
+        </p>
+
+    </output_format>
+  </statement>
+  <examples>
+    <example>
+        <input>GCTGCGCAGCCGTGATATCAATCGACGCTGCGCAATAGCATCGACTACGTGCGCACGATC
+GATATC
+TGCGCA</input>
+        <output>['GCTGC', 'GCAGCCGTGAT', 'ATCAATCGACGCTGC', 'GCAATAGCATCGACTACGTGC', 'GCACGATC']</output>
+    </example>
+      <example>
+          <input>TGAATGGCGCCCAGCTAGCTACGTATAGCATCGACGCGCTACGTAATCAGTATAGGCGCCGCTAGC
+GGCGCC
+TACGTA
+          </input>
+          <output>['TGAATGGC', 'GCCCAGCTAGCTAC', 'GTATAGCATCGACGCGCTAC', 'GTAATCAGTATAGGC',
+              'GCCGCTAGC']
+          </output>
+      </example>
+  </examples>
+</problem>

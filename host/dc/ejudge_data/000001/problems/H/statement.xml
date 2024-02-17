@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Шаг 10 – Биоинформатика – Stepik.pdf -->
+<problem
+   package = "ru.ejudge.sample_contest"
+   id = "H"
+   type = "standard">
+  <keywords>H</keywords>
+  <statement language="ru_RU">
+    <title>Рестрикция-3. Множественные сайты многих рестриктаз</title>
+    <description>
+        <p>Иногда бывает нужно выполнить рестрикцию не двумя, а другим количеством рестриктаз.
+            Доработайте программу так, чтобы она могла выполнять рестрикцию последовательностей, в которых
+            присутствует произвольное количество сайтов узнавания произвольного количества рестриктаз.
+        </p>
+            <p>Ниже показаны только 3 примера
+                входных и выходных данных, для проверки задачи будут проведены дополнительные тесты.</p>
+    </description>
+    <input_format>
+        <p> последовательность
+            ДНК, и список сайтов узнавания рестриктаз (от 1 до 10). При этом в последовательности может
+            содержаться любое количество сайтов узнавания каждой из рестриктаз (в том числе и 0).
+        </p>
+    </input_format>
+    <output_format>
+        <p>Программа
+            должна выполнить рестрикцию данного фрагмента ДНК данными рестриктазами и вывести на экран
+            (при помощи функции print() ) список всех фрагментов, образовавшихся в результате рестрикции.
+            Фрагменты в этом списке должны распологаться в том порядке, в котором они были в исходной
+            молекуле ДНК.
+        </p>
+    </output_format>
+  </statement>
+  <examples>
+    <example>
+        <input>ATCGGCGCCGATCGATGGCGTACGTACCCGATCGATGGCGCCCGATCGAGATATCGA
+GGCGCC TACGTA GATATC</input>
+        <output>['ATCGGC', 'GCCGATCGATGGCGTAC', 'GTACCCGATCGATGGC', 'GCCCGATCGAGAT', 'ATCGA']</output>
+    </example>
+      <example>
+          <input>AGTCAGCTAGCATCGATGATATCGATCAGCTGACTAGCTAGCTACGTAGC
+GATATC ATTAAT
+          </input>
+          <output>['AGTCAGCTAGCATCGATGAT', 'ATCGATCAGCTGACTAGCTAGCTACGTAGC']
+          </output>
+      </example>
+  </examples>
+</problem>

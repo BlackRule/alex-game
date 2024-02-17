@@ -22,6 +22,18 @@ export const infm: Chapter[] = [
           }
         ]
       },
+      {
+        type: 'questionsGroup',
+        questions: [
+          {
+            id: "9",
+            type: 'programming-problem',
+            problem_id: "9",
+            time_limit_in_secs:1,
+            memory_limit_in_mb:256
+          }
+        ]
+      },
     ]
   }
   ]

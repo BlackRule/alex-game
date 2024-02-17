@@ -33,6 +33,54 @@ export const bioinfm: Chapter[] = [
           },
         ]
       }*/
+      {
+        type: 'questionsGroup',
+        questions: [
+          {
+            id: "5",
+            type: 'programming-problem',
+            problem_id: "5",
+            time_limit_in_secs:0,
+            memory_limit_in_mb:256
+          },
+        ]
+      },
+      {
+        type: 'questionsGroup',
+        questions: [
+          {
+            id: "6",
+            type: 'programming-problem',
+            problem_id: "6",
+            time_limit_in_secs:0,
+            memory_limit_in_mb:256
+          },
+        ]
+      },
+      {
+        type: 'questionsGroup',
+        questions: [
+          {
+            id: "7",
+            type: 'programming-problem',
+            problem_id: "7",
+            time_limit_in_secs:0,
+            memory_limit_in_mb:256
+          },
+        ]
+      },
+      {
+        type: 'questionsGroup',
+        questions: [
+          {
+            id: "8",
+            type: 'programming-problem',
+            problem_id: "8",
+            time_limit_in_secs:0,
+            memory_limit_in_mb:256
+          },
+        ]
+      },
     ]
   }
   ]
