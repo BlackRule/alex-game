@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Задача IV.2.2.5. Поиск сайтов рестрикции 2 (3 балла) -->
+<problem
+        package="ru.ejudge.sample_contest"
+        id="X"
+        type="standard">
+    <keywords>X</keywords>
+    <statement language="ru_RU">
+        <title>Поиск сайтов рестрикции 2</title>
+        <description>
+            <p>Существуют рестриктазы с более сложными сайтами узнавания. Они могут узнавать последовательности ДНК, содержащие сразу несколько различных нуклеотидов. Например, сайт узнавания рестриктазы Hpy188I выглядит следующим образом:
+                TCNGA. То есть в третьей позиции этого сайта может стоять любой нуклеотид (рестриктаза узнает сайты TCAGA, TCTGA, TCCGA, TCGGA). Сайт узнавания рестриктазы EaeI имеет последовательность YGGCCR, где Y — это нуклеотид C или
+                T, а R — это нуклеотид G или A. Для обозначения сразу нескольких различных нуклеотидов используют дополнительные буквенные обозначения, с которыми можно
+                ознакомиться по ссылке <a href="https://ru.wikipedia.org/wiki/Нуклеотиды">https://ru.wikipedia.org/wiki/Нуклеотиды</a>.
+            </p>
+        </description>
+        <input_format>
+            <p>через input() две последовательности, разделенные одним знаком пробела: сайт узнавания рестриктазы
+                и последовательность ДНК (всегда в направлении 5’-3’).Сайт узнавания может содержать (а может и не содержать) дополнительные буквенные коды, обозначающие
+                194
+                сразу несколько нуклеотидов.
+            </p>
+        </input_format>
+        <output_format>Выполните проверку наличия данного сайта узнвания
+            (во всех возможных его вариациях) в последовательности. При помощи функции
+            print() выведите на экран True, если такой сайт узнавания есть в последовательности и False в противном случае.</output_format>
+    </statement>
+    <examples>
+        <example>
+            <input>TCNGA ATACATCAGAAATATCACCAATACCG</input>
+            <output>True</output>
+        </example>
+        <example>
+            <input>YGGCCR ATATATCTACTATATGATTATCATGTGTATCAT</input>
+            <output>False</output>
+        </example>
+        <example>
+            <input>YGGCCR GTATACACATGTACTATCGGCCGCATACATTA</input>
+            <output>True</output>
+        </example>
+        <example>
+            <input>TCNGA AAAAAAAATTTTTTTTTCCCCCCCGGGGGGGG</input>
+            <output>False</output>
+        </example>
+        <example>
+            <input>YYYYY ATCTCTCTTCAA</input>
+            <output>True</output>
+        </example>
+        <example>
+            <input>WWW GCGCGCCGCGCGCGCGCGCGCGATGCGCAGGTGGCA</input>
+            <output>False</output>
+        </example>
+    </examples>
+</problem>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- genom-assignements.pdf Задача IV.1.2.4. Поиск сайтов рестрикции -->
+<problem
+        package="ru.ejudge.sample_contest"
+        id="T"
+        type="standard">
+    <keywords>T</keywords>
+    <statement language="ru_RU">
+        <title>Поиск сайтов рестрикции</title>
+        <description>
+            <p>В лабораторной практике часто приходится готовить растворы веществ с заданной концентрацией. Чтобы
+                автоматизировать процесс расчетов для приготовления
+                растворов, можно использовать программирование на языке Python.</p>
+            <p>Напишите программу, которая будет принимать на вход две последовательности: сайт узнавания рестриктазы и последовательность ДНК (всегда в направлении 5’-3’). Выполните проверку на наличие этого сайта узнавания в последовательности
+            </p>
+        </description>
+        <input_format>
+            <p>Вход (через input()) две последовательности, разделенные одним знаком пробела: сайт узнавания рестриктазы
+                и последовательность ДНК (всегда в направлении 5’-3’)</p>
+        </input_format>
+        <output_format>
+            Выведите на экран (при помощи print()) True, если сайт рестрикции есть в последовательности и False, если
+            сайта рестрикции нет в последовательности.
+        </output_format>
+    </statement>
+    <examples>
+        <example>
+            <input>AAGCTT CACACTAAGCTTATATCACATACA</input>
+            <output>True</output>
+        </example>
+        <example>
+            <input>GGATCC CAACACATGATGATCATCATCATGTGATCTA</input>
+            <output>False</output>
+        </example>
+        <example>
+            <input>CCCCC ATATATACACACTGAGCAGGAGCATATACA</input>
+            <output>False</output>
+        </example>
+        <example>
+            <input>AAAAA AATATGAGAGAAAAAAAAAATATACACA</input>
+            <output>True</output>
+        </example>
+        <example>
+            <input>ATATATA ATATATATATATATATATATAT</input>
+            <output>True</output>
+        </example>
+        <example>
+            <input>ATGATGCAT ATCACTAGCTACGATCGATCGATCGACTAGCTACGATCGATCGATCGAT</input>
+            <output>False</output>
+        </example>
+    </examples>
+</problem>

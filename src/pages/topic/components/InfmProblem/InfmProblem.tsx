@@ -30,7 +30,7 @@ function InfmProblem(props: { question:Extract<Question, { type: "programming-pr
       return lim===0?'нет':`${lim}${unit}`
     }
     get_problem_statement(props.question.problem_id).then((r)=> {
-      setHtml(`Ограничения: по времени ${f(props.question.time_limit_in_secs,'сек')} ,по памяти ${f(props.question.memory_limit_in_mb,'Мб')}<br>`+r)
+      setHtml(`Ограничения: по времени ${f(props.question.time_limit_in_secs,'сек')}, по памяти ${f(props.question.memory_limit_in_mb,'Мб')}<br>`+r)
     })
     get_contest_status().then((r)=>{
       if(r.ok) setCompilers(r.result.compilers)

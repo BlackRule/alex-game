@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- C_Простой_палиндром_—_Битва_алгоритмов_СПб_—_Яндекс_Контест.pdf -->
+<problem
+   package = "ru.ejudge.sample_contest"
+   id = "M"
+   type = "standard">
+  <keywords>M</keywords>
+  <statement language="ru_RU">
+    <title>Простой палиндром</title>
+    <description>
+        <p>В Госкорпорации "Росатом" на собеседовании на стажировку молодому специалисту задали задачу: написать алгоритм проверки, является ли
+            заданное слово палиндромом. Молодой специалист не испугался, и, вспомнив, что решал похожую задачу на соревнованиях по
+            программированию, запросто прошел на стажировку.</p>
+        <p>
+            <b>Палиндром</b> - это число, буквосочетание, слово или текст, которые одинаково читаются в обоих направлениях.
+        </p>
+    </description>
+    <input_format>
+        <p>Строка длинной не более \(10^4\) символов.</p>
+    </input_format>
+    <output_format>
+        <p>True в случае, если слово является палиндромом
+            <br/>False в обратном случае</p>
+    </output_format>
+  </statement>
+  <examples>
+    <example>
+        <input>mephiihpem</input>
+        <output>True</output>
+    </example>
+    <example>
+          <input>-123421</input>
+          <output>False</output>
+      </example>
+  </examples>
+</problem>

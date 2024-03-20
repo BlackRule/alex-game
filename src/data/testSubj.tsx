@@ -1,6 +1,4 @@
 import {Chapter} from "src/data/types.ts"
-import SyntaxHighlighter from 'react-syntax-highlighter'
-import {stackoverflowLight} from "react-syntax-highlighter/dist/esm/styles/hljs";
 
 export const testSubj: Chapter[] = [
   {

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Задача IV.2.2.6. Поиск сайтов рестрикции — поиск для конкретных рестриктаз (2 балла) -->
+<problem
+        package="ru.ejudge.sample_contest"
+        id="Y"
+        type="standard">
+    <keywords>Y</keywords>
+    <statement language="ru_RU">
+        <title>Поиск сайтов рестрикции — поиск для конкретных рестриктаз</title>
+        <description>
+            <p>Исследователь в лаборатории работает в основном с рестриктазами XhoI, NdeI,
+                SpeI, EcoRI, HindIII, BamHI. Данная задача проверяет, содержит ли последовательнось сайты узнавания этих рестриктаз.</p>
+        </description>
+        <input_format>
+            <p>через input() последовательность и проверяет, есть ли в ней сайты узнавания перечисленных выше рестриктаз.</p>
+        </input_format>
+        <output_format>Выведите на экран (в алфавитном порядке, по возрастанию) все рестриктазы, сайты которых есть в последовательности. Если последовательность не содержит
+            сайты узнавания ни одной рестриктазы, выведите на экран.</output_format>
+    </statement>
+    <examples>
+        <example>
+            <input>AGTGATGTATATAAGAGACATATGGTCACATATAGGCGCGCGATATAGCGCGCATATAGGATCCGCGCGCTCGAGC</input>
+            <output>BamHI NdeI XhoI</output>
+        </example>
+        <example>
+            <input>AGTGATGAATTCGTATATAAGAGAGTCACATATAGGCGCGCGATATAGCGCGCATATAGCGCGC</input>
+            <output>EcoRI</output>
+        </example>
+        <example>
+            <input>AATACTCACCAATAGCTAATACGATCGATCGAATCGACTAGCTACGATCGATATACACGATCGAATACAT</input>
+            <output>False</output>
+        </example>
+        <example>
+            <input>AATACTCACCAATAGCTAATACGATCGATCGAATCGAAGCTTACTAGCTACGATCGATATACACGATCGAATACAT</input>
+            <output>HindIII</output>
+        </example>
+        <example>
+            <input>AATACTCACCAATAGCTAATACGATCGATCGAATCGAAGCTTACTAGCTACGATCGATATACACGATCGAATAGGATCCCAT</input>
+            <output>BamHI HindIII</output>
+        </example>
+        <example>
+            <input>ATCACTAGCTACGATCGATCGATCGACTAGCTACGATCGATCGATCGAT</input>
+            <output>False</output>
+        </example>
+    </examples>
+</problem>

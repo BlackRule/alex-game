@@ -2,6 +2,8 @@ import {infm} from "./infm.tsx";
 import {Courses} from "./types.ts";
 import {bioinfm} from "src/data/bioinfm.tsx";
 import {testSubj} from "src/data/testSubj.tsx";
+import {infoph} from "src/data/infoph.tsx";
+import {infoch} from "src/data/infoch.tsx";
 
 
 export const courses: Courses = {
@@ -15,6 +17,18 @@ export const courses: Courses = {
     text: "Биоинформатика",
     tags: ["Полезно знать", "Словарь терминов"],
     bgColor: "#75b000",
+  },
+  infoph: {
+    chapters: infoph,
+    text: "Инфофизика",
+    tags: ["Полезно знать", "Словарь терминов"],
+    bgColor: "#ff6201",
+  },
+  infoch: {
+    chapters: infoch,
+    text: "Инфохимия",
+    tags: ["Полезно знать", "Словарь терминов"],
+    bgColor: "#0053ff",
   },
   test: {
     chapters: testSubj,

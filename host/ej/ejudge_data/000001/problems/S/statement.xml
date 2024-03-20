@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- genom-assignements.pdf Задача IV.1.2.3. Приготовление растворов (3 балла) -->
+<problem
+   package = "ru.ejudge.sample_contest"
+   id = "S"
+   type = "standard">
+  <keywords>S</keywords>
+  <statement language="ru_RU">
+    <title>Приготовление растворов</title>
+    <description>
+        <p>В лабораторной практике часто приходится готовить растворы веществ с заданной концентрацией. Чтобы автоматизировать процесс расчетов для приготовления
+            растворов, можно использовать программирование на языке Python.</p>
+        <p>Напишите программу, которая будет вычислять, сколько сухого вещества нужно
+            добавить в раствор для достижения нужной молярной концентрации. </p>
+    </description>
+    <input_format>
+    <p>При помощи
+        функции input() считайте строку, которая будет содержать следующие значения,
+        разделенные одним знаком пробела: молярная масса вещества (г/моль), концентрация (моль/л) и объем раствора (л), который нужно приготовить.</p>
+    </input_format>
+    <output_format>
+        Выведите ответ на экран при помощи функции print() количество грамм вещества, которое необходимо добавить в раствор.
+    </output_format>
+  </statement>
+  <examples>
+    <example>
+        <input>40 1 1</input>
+        <output>40.0</output>
+    </example>
+    <example>
+          <input>121 0.05 0.5</input>
+          <output>3.025</output>
+    </example>
+      <example>
+          <input>133 0.3 0.33</input>
+          <output>13.167</output>
+      </example>
+      <example>
+          <input>22 0.77 0.07</input>
+          <output>1.1858</output>
+      </example>
+      <example>
+          <input>12564 0.0005 0.31</input>
+          <output>1.94742</output>
+      </example>
+  </examples>
+</problem>

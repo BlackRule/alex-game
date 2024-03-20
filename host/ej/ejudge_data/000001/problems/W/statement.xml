@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Задача IV.2.2.4. Поиск сайтов рестрикции (2 балла) -->
+<problem
+        package="ru.ejudge.sample_contest"
+        id="W"
+        type="standard">
+    <keywords>W</keywords>
+    <statement language="ru_RU">
+        <title>Поиск сайтов рестрикции</title>
+        <description>
+            <p>При помощи языка программирования Python можно работать с биологическими
+                последовательностями, например искать сайты узнавания рестриктаз в последовательности ДНК.</p>
+        </description>
+        <input_format>
+            <p>через input() две последовательности, разделенные одним знаком пробела: сайт узнавания рестриктазы
+                и последовательность ДНК (всегда в направлении 5’-3’). </p>
+        </input_format>
+        <output_format>Выполните проверку на
+            наличие этого сайта узнавания в последовательности и выведите на экран (при помощи print()) количество сайтов рестрикции в последовательности.</output_format>
+    </statement>
+    <examples>
+        <example>
+            <input>CATATG AATACACCATATGATATGATGTACCATATGTATATTGACCATATG</input>
+            <output>3</output>
+        </example>
+        <example>
+            <input>GGATCC ATTGATGATGATGATCATCACTATGATGATCATCATTTTATACTGTATCAC</input>
+            <output>0</output>
+        </example>
+        <example>
+            <input>GGATCC ATTGATGATGATGATCATCACTATGATGATCATCATGGATCCTTTATACTGTATCAC</input>
+            <output>1</output>
+        </example>
+        <example>
+            <input>CCCCC ATATATATATATGATGATGCGACTATATTATGT</input>
+            <output>0</output>
+        </example>
+        <example>
+            <input>ATATA AGTGATGTATATAAGAGAGTCACATATAGGCGCGCGATATAGCGCGCATATAGCGCGC</input>
+            <output>4</output>
+        </example>
+    </examples>
+</problem>

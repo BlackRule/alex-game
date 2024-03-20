@@ -1,7 +1,6 @@
 import {Chapter} from "src/data/types.ts"
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import {stackoverflowLight} from "react-syntax-highlighter/dist/esm/styles/hljs";
-import {MathJax} from "better-react-mathjax";
 
 export const infm: Chapter[] = [
   {
@@ -31,6 +30,114 @@ export const infm: Chapter[] = [
             problem_id: "9",
             time_limit_in_secs:1,
             memory_limit_in_mb:256
+          }
+        ]
+      },
+      {
+        type: 'questionsGroup',
+        questions: [
+          {
+            id: "10",
+            type: 'programming-problem',
+            problem_id: "10",
+            time_limit_in_secs:1,
+            memory_limit_in_mb:64
+          }
+        ]
+      },
+      {
+        type: 'questionsGroup',
+        questions: [
+          {
+            id: "11",
+            type: 'programming-problem',
+            problem_id: "11",
+            time_limit_in_secs:1,
+            memory_limit_in_mb:64
+          }
+        ]
+      },
+      {
+        type: 'questionsGroup',
+        questions: [
+          {
+            id: "12",
+            type: 'programming-problem',
+            problem_id: "12",
+            time_limit_in_secs:1,
+            memory_limit_in_mb:64
+          }
+        ]
+      },
+      {
+        type: 'questionsGroup',
+        questions: [
+          {
+            id: "13",
+            type: 'programming-problem',
+            problem_id: "13",
+            time_limit_in_secs:1,
+            memory_limit_in_mb:64
+          }
+        ]
+      },
+      {
+        type: 'questionsGroup',
+        questions: [
+          {
+            id: "14",
+            type: 'programming-problem',
+            problem_id: "14",
+            time_limit_in_secs:1,
+            memory_limit_in_mb:64
+          }
+        ]
+      },
+      {
+        type: 'questionsGroup',
+        questions: [
+          {
+            id: "15",
+            type: 'programming-problem',
+            problem_id: "15",
+            time_limit_in_secs:1,
+            memory_limit_in_mb:64
+          }
+        ]
+      },
+      {
+        type: 'questionsGroup',
+        questions: [
+          {
+            id: "16",
+            type: 'programming-problem',
+            problem_id: "16",
+            time_limit_in_secs:1,
+            memory_limit_in_mb:64
+          }
+        ]
+      },
+      {
+        type: 'questionsGroup',
+        questions: [
+          {
+            id: "17",
+            type: 'programming-problem',
+            problem_id: "17",
+            time_limit_in_secs:1,
+            memory_limit_in_mb:64
+          }
+        ]
+      },
+      {
+        type: 'questionsGroup',
+        questions: [
+          {
+            id: "18",
+            type: 'programming-problem',
+            problem_id: "18",
+            time_limit_in_secs:1,
+            memory_limit_in_mb:64
           }
         ]
       },

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Задача IV.1.2.5. Обратно-комплементарная цепь ДНК -->
+<problem
+        package="ru.ejudge.sample_contest"
+        id="U"
+        type="standard">
+    <keywords>U</keywords>
+    <statement language="ru_RU">
+        <title>Обратно-комплементарная цепь ДНК</title>
+        <description>
+            <p>Обычно работают с последовательностями ДНК, записанными в направлении
+                5’-3’. Если для такой последовательности найти комплементарную последовательность, то она будет записана в направлении 3’-5’, и для работы с ней в направлении
+                5’-3’, эту последовательность необходимо «перевернуть». Такая последовательность
+                называется обратно-комплементарной последовательностью ДНК.</p>
+            <p>Напишите программу, которая будет принимать на вход последовательность ДНК (в направлении 5’-3’). Найдите для этой последовательности
+                обратно комплиментарную последовательность и выведите ее на экран (в направлении 5’-3’)</p>
+        </description>
+        <input_format>
+            <p>Вход (через input()) последовательность ДНК (в направлении 5’-3’)</p>
+        </input_format>
+        <output_format>При помощи функции print(). Программа должна работать с последовательностями в любом регистре, и выводить ее на экран в том регистре, в котором она была подана на вход.</output_format>
+    </statement>
+    <examples>
+        <example>
+            <input>ATGTTACATGACG</input>
+            <output>CGTCATGTAACAT</output>
+        </example>
+        <example>
+            <input>tacatcatgaccatat</input>
+            <output>atatggtcatgatgta</output>
+        </example>
+        <example>
+            <input>ACTAGCATCATCGATCATCAGCTAGCATCGATATC</input>
+            <output>GATATCGATGCTAGCTGATGATCGATGATGCTAGT</output>
+        </example>
+        <example>
+            <input>ctagcatcgatcgatcagctagcatcagtatatatcgcagcgcactacgctgcgatcag</input>
+            <output>ctgatcgcagcgtagtgcgctgcgatatatactgatgctagctgatcgatcgatgctag</output>
+        </example>
+        <example>
+            <input>actagtatcatgatctactgtatctat</input>
+            <output>atagatacagtagatcatgatactagt</output>
+        </example>
+    </examples>
+</problem>

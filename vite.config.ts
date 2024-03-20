@@ -12,5 +12,6 @@ export default defineConfig({
     alias: {
       src: "/src",
     },
-  }
+  },
+  build:{outDir:'host/front/shared-folder'}
 })
