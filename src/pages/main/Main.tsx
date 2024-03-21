@@ -18,9 +18,9 @@ import {ph8} from "src/data/ph8.ts";
 //todo TS keys of this should match keys of courses
 const courseImage={
   infm: i12,
-  ch9: i1,
   bio9: i11,
-  ph9:i13
+  infoph:i13,
+  infoch: i1
 }
 function Main() {
   const [language] = [useStore((state) => state.language),useStore((state) => state.set)]

@@ -15,27 +15,24 @@ export const courses: Courses = {
   bio9: {
     chapters: bioinfm,
     text: "Биоинформатика",
-    tags: ["Полезно знать", "Словарь терминов"],
     bgColor: "#75b000",
   },
   infoph: {
     chapters: infoph,
     text: "Инфофизика",
-    tags: ["Полезно знать", "Словарь терминов"],
-    bgColor: "#ff6201",
+    bgColor: "#A81E69",
   },
   infoch: {
     chapters: infoch,
     text: "Инфохимия",
-    tags: ["Полезно знать", "Словарь терминов"],
-    bgColor: "#0053ff",
+    bgColor: "#4812B2",
   },
-  test: {
+/*  test: {
     chapters: testSubj,
     text: "Тестовый предмет",
     tags: ["позволяет проверить платформу"],
     bgColor: "#ff0101",
-  },
+  },*/
 
 }
 

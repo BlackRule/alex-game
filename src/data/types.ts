@@ -18,4 +18,4 @@ export type Topic = { name:/*fixme unused property*/ string, tasks: Task[] }
 export type Chapter = { name: string, topics: Topic[] }
 
 
-export type Courses = { [id: string]: { chapters:Chapter[],bgColor:Exclude<CSSProperties["color"],undefined>,/*todo rename to title*/text:string,tags:string[]} }
+export type Courses = { [id: string]: { chapters:Chapter[],bgColor:Exclude<CSSProperties["color"],undefined>,/*todo rename to title*/text:string,tags?:string[]} }
