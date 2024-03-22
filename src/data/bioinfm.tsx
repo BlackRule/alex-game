@@ -5,18 +5,6 @@ export const bioinfm: Chapter[] = [
   name: 'Глава 1', topics: [
     { name: 'Номинал монет',
     tasks: [
-      {
-        type: 'questionsGroup',
-        questions: [
-          {
-            id: "4",
-            type: 'programming-problem',
-            problem_id: "4",
-            time_limit_in_secs:5,
-            memory_limit_in_mb:256
-          },
-        ]
-      },
       /*{
         type: 'questionsGroup',
         questions: [
@@ -76,18 +64,6 @@ export const bioinfm: Chapter[] = [
             id: "8",
             type: 'programming-problem',
             problem_id: "8",
-            time_limit_in_secs:0,
-            memory_limit_in_mb:256
-          },
-        ]
-      },
-      {
-        type: 'questionsGroup',
-        questions: [
-          {
-            id: "19",
-            type: 'programming-problem',
-            problem_id: "19",
             time_limit_in_secs:0,
             memory_limit_in_mb:256
           },

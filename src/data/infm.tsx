@@ -11,6 +11,18 @@ export const infm: Chapter[] = [
         type: 'questionsGroup',
         questions: [
           {
+            id: "4",
+            type: 'programming-problem',
+            problem_id: "4",
+            time_limit_in_secs:5,
+            memory_limit_in_mb:256
+          },
+        ]
+      },
+      {
+        type: 'questionsGroup',
+        questions: [
+          {
             // todo Система оценки
             //  Всего в задаче 50 тестов (не считая примера). Каждый тест оценивается в 2 балла.
             id: "3",

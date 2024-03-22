@@ -9,6 +9,18 @@ export const infoch: Chapter[] = [
         type: 'questionsGroup',
         questions: [
           {
+            id: "19",
+            type: 'programming-problem',
+            problem_id: "19",
+            time_limit_in_secs:0,
+            memory_limit_in_mb:256
+          },
+        ]
+      },
+      {
+        type: 'questionsGroup',
+        questions: [
+          {
             id: "32",
             type: 'programming-problem',
             problem_id: "32",

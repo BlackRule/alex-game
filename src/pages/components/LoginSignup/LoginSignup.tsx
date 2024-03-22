@@ -1,6 +1,6 @@
 import styles from './LoginSignup.module.scss'
 
-import React, {useState} from 'react'
+import React, {useRef, useState} from 'react'
 import {signInWithEmailAndPassword} from 'firebase/auth'
 import {auth} from '../../../firebase.ts'
 import {NavLink, useNavigate} from 'react-router-dom'
@@ -8,15 +8,17 @@ import {Alert, Button, TextField} from '@mui/material'
 import {useStore} from '../../../store.ts'
 import {translation} from '../../../translation.ts'
 import {createUserWithEmailAndPassword} from '../../../service.ts'
+import { sendPasswordResetEmail } from 'firebase/auth'
 
 const LoginSignup = (props:{type:'signIn'|'signUp'}) => {
   const navigate = useNavigate()
-  const [email, setEmail] = useState('')
+  const emailField=useRef<HTMLInputElement|null>(null)
   const [password, setPassword] = useState('')
   const language = useStore((state) => state.language)
   const [error, setError] = useState<null|string>(null)
   const onSubmit = async (e) => {
     e.preventDefault()
+    const email=emailField.current?.value??''
     let r
     switch(props.type) {
     case 'signIn':
@@ -46,6 +48,17 @@ const LoginSignup = (props:{type:'signIn'|'signUp'}) => {
     })
 
   }
+  const sendEmail = async (e) => {
+    const email = emailField.current?.value ?? ''
+    auth.languageCode = language
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        alert(translation[language]['password_reset_email_sent'])
+      })
+      .catch((error) => {
+        setError(translation[language]['auth/invalid-login-credentials'])
+      })
+  }
   return (
     <>
       <main>
@@ -56,7 +69,7 @@ const LoginSignup = (props:{type:'signIn'|'signUp'}) => {
             name="email"
             required
             type="email"
-            onChange={(e) => setEmail(e.target.value)
+            inputRef={emailField
               /*aria-describedby="my-helper-text"*/}
           />
           {/* helperText="Incorrect entry." todo */ }
@@ -76,13 +89,21 @@ const LoginSignup = (props:{type:'signIn'|'signUp'}) => {
             {translation[language][props.type==='signUp'?'signUp':'login']}
           </Button>
         </form>
-        {props.type==='signIn'?<p>
+        {props.type==='signIn'?<><p>
           {translation[language].noAcc}
           {' '}
           <NavLink to="/signup">
             {translation[language].signUp}
           </NavLink>
-        </p>:
+        </p><p>
+          {translation[language].forgot_password}
+          {' '}
+          <Button variant={'contained'}
+            onClick={sendEmail}
+          >
+            {translation[language].send_password_reset_email}
+          </Button>
+        </p></>:
           <p>
             {translation[language].haveAcc}
             {' '}
