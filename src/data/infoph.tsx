@@ -9,6 +9,18 @@ export const infoph: Chapter[] = [
         type: 'questionsGroup',
         questions: [
           {
+            id: "36",
+            type: 'programming-problem',
+            problem_id: "36",
+            time_limit_in_secs:0,
+            memory_limit_in_mb:256
+          },
+        ]
+      },
+      {
+        type: 'questionsGroup',
+        questions: [
+          {
             id: "26",
             type: 'programming-problem',
             problem_id: "26",

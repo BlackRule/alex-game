@@ -202,10 +202,9 @@ const TopicPage = () => {
             </>
             break
         }
-        
     }
     return <>
-        <Header tId={tId} t1Id={t1Id}/>
+        <Header tId={tId} t1Id={t1Id} currentTaskId={taskId}/>
         <MathJax  dynamic hideUntilTypeset={"first"}>
             {element}
         </MathJax>

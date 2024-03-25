@@ -6,8 +6,9 @@ import ico3 from "src/pages/topic/img/ico3.png";
 import {Chapter} from "src/data/types.ts";
 import {courses} from "src/data/data.ts";
 import {NumericalString} from "src/types.ts";
+import clsx from 'clsx';
 
-export function Header(props: { tId: string,t1Id:NumericalString } ) {
+export function Header(props: { tId: string,t1Id:NumericalString,currentTaskId:NumericalString } ) {
     const t1Id=props.t1Id
     const ts: Chapter[] = Object.keys(courses).includes(props.tId) ?
         courses[props.tId].chapters : []
@@ -29,7 +30,7 @@ export function Header(props: { tId: string,t1Id:NumericalString } ) {
                     break
             }
             links.push(
-    <Link to={`/topic/${props.tId}_${t1Id}_${i1}_${i2}`} key={`${i1}_${i2}`} className={styles["link-ico"]} style={{backgroundImage:`url(${i})`}}/>)
+    <Link to={`/topic/${props.tId}_${t1Id}_${i1}_${i2}`} key={`${i1}_${i2}`} className={clsx(styles["link-ico"],{[styles.selected]:`${i2}`===props.currentTaskId})} style={{backgroundImage:`url(${i})`}}>{i2}</Link>)
         }
     }
     return <><Link to={`/Course/${props.tId}`}>Назад</Link>

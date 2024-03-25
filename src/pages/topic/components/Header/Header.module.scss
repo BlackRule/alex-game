@@ -10,4 +10,11 @@
   width: 32px;
   height: 32px;
   background-size: contain;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+}
+.link-ico.selected{
+  border: 2px solid white;
 }
