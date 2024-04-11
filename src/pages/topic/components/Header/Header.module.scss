@@ -5,6 +5,7 @@
   padding: 5px;
   gap: 5px;
   justify-content: center;
+  position: relative;
 }
 .link-ico{
   width: 32px;
@@ -17,4 +18,11 @@
 }
 .link-ico.selected{
   border: 2px solid white;
+}
+.back_arrow{
+  position: absolute;
+  display: flex;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
 }

@@ -1,4 +1,4 @@
-import {Link, useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import styles from './style.module.scss'
 import {Progress} from "./components/Progress/Progress.tsx";
 import {courses, coursesQuestionsCount} from "src/data/data.ts";
@@ -7,6 +7,7 @@ import {useDocumentData} from "react-firebase-hooks/firestore";
 import {doc} from "firebase/firestore";
 import {db} from "src/firebase.ts";
 import {useUser} from "src/service.ts";
+import {Button} from "@mui/material";
 
 const CoursePage = () => {
     const user = useUser()
@@ -16,6 +17,7 @@ const CoursePage = () => {
     const [course]=useDocumentData(user!==null?doc(db, `users/${user.uid}/courses/`,id):undefined)
     const sc=course?.solvedCorrectly??0
     const st=coursesQuestionsCount[id]
+    const navigate = useNavigate()
     return <>
         <header>
             <div className={styles.name}>{courses[id].text}</div>
@@ -23,16 +25,20 @@ const CoursePage = () => {
                 <div>Прогресс</div>
                 <Progress progress={sc/st*100} className={styles.progress}/>
                 <div>{sc} из {st}</div>
-               {/* <div>Дни</div>
-                <Progress progress={50} className={styles.progress}/>
-                <div>54 из 128</div>*/}
             </div>
-            <Link to={"/"}>Назад</Link>
+            <Button variant={'contained'} className={styles.back_btn} onClick={()=>
+              navigate('/')}>
+              Назад
+            </Button>
+
         </header>
 
         <div className={styles.chapters}>
             {chapters.map((t, i) =>
-              <a key={`/topic/${id}_${i}_0_0`} href={`/topic/${id}_${i}_0_0`}>{t.name}</a>
+                <Button key={`/topic/${id}_${i}_0_0`} variant={'contained'} onClick={()=>
+              navigate(`/topic/${id}_${i}_0_0`)}>
+              {t.name}
+            </Button>
             )}
         {/* fixme a instead of Link because of Mathjax  */}
         </div>

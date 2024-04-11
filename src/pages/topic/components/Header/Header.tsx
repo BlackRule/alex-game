@@ -3,6 +3,7 @@ import styles from './Header.module.scss'
 import ico1 from "src/pages/topic/img/ico1.png";
 import ico2 from "src/pages/topic/img/ico2.png";
 import ico3 from "src/pages/topic/img/ico3.png";
+import back_arrow from "./back-arrow.svg";
 import {Chapter} from "src/data/types.ts";
 import {courses} from "src/data/data.ts";
 import {NumericalString} from "src/types.ts";
@@ -33,10 +34,8 @@ export function Header(props: { tId: string,t1Id:NumericalString,currentTaskId:N
     <Link to={`/topic/${props.tId}_${t1Id}_${i1}_${i2}`} key={`${i1}_${i2}`} className={clsx(styles["link-ico"],{[styles.selected]:`${i2}`===props.currentTaskId})} style={{backgroundImage:`url(${i})`}}>{i2}</Link>)
         }
     }
-    return <><Link to={`/Course/${props.tId}`}>Назад</Link>
-        <div className={styles.Header}
+    return <div className={styles.Header}
              style={{backgroundColor:courses[props.tId].bgColor}}>
-            {links}
+            <Link to={`/Course/${props.tId}`} className={styles.back_arrow}><img src={back_arrow} alt="назад"/></Link>{links}
         </div>
-    </>;
 }
