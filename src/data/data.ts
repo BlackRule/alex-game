@@ -10,7 +10,6 @@ export const courses: Courses = {
   infm: {
     chapters: infm,
     bgColor: "#007a4f", text: "Информатика и прикладная математика",
-    tags: ["Полезно знать"],
   },
   bio9: {
     chapters: bioinfm,
